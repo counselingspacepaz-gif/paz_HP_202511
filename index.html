@@ -1,104 +1,86 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>カウンセリングスペースpaz | 女性と子どものための相談機関</title>
+---
+layout: default
+title: Counseling Space paz
+description: 女性と子どものための相談機関です。臨床心理士・公認心理師が静岡県沼津市で安心してお話を伺います（静岡県沼津市）。
+permalink: /
 
-  <meta name="description" content="静岡県沼津市にある臨床心理士・公認心理師による心理相談室です。女性と15歳以下のお子さんを対象に、安心できる相談場所を提供しています。">
+# OGP画像: 最新仕様
+image: /images/ogp/ogp-counseling-space-paz.png
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400&display=swap" rel="stylesheet">
-  
-  <link rel="icon" href="{{ '/images/logo/favicon.ico' | relative_url }}" type="image/x-icon">
-  
-  <meta property="og:image" content="{{ '/images/ogp/ogp-counseling-space-paz.png' | relative_url }}">
-  
-  {% seo %}
-</head>
-<body>
-  <section class="hero section section--hero hero--home">
-    <div class="hero__bg" style="background-image: url('{{ '/images/hero/sprout-in-hand.jpg' | relative_url }}');"></div>
-    <div class="wrapper">
-      <div class="hero__content">
-        <h1>女性と子どものための相談機関です</h1>
-        <p class="hero__subtitle">pazとは平和・安らぎという意味です</p>
-        <p>
-          <a class="btn btn--primary" href="https://outlook.office.com/book/paz1@counselingspacepaz.com/" target="_blank">ご予約はこちら</a>
-        </p>
-      </div>
-    </div>
-  </section>
+# ヒーロー設定（includeで利用）
+hero_class: hero--home
+hero_title: 女性と子どものための相談機関です
+hero_subtitle: pazとは平和・安らぎという意味です
+hero_image: /images/hero/sprout-in-hand.jpg
 
-  <section class="spotlight section section--philosophy section--light-sage">
-    <div class="wrapper inner">
-      <h2>カウンセリングスペースpazの理念</h2>
-      <p>
-        カウンセリングスペースpaz（パス）は、静岡県沼津市にある臨床心理士・公認心理師による心理相談室です。
-        pazは、スペイン語で「平和・安らぎ」を意味します。ここに訪れるすべての方が、心穏やかに、自分らしく過ごせるように――
-        女性と15歳以下のお子さんを対象に、安心して話せる場所を提供しています。
-      </p>
-    </div>
-  </section>
-  
-  ---
+# Hero CTA文言: 「ご予約はこちら」
+hero_cta: ご予約はこちら
+hero_cta_url: https://outlook.office.com/book/paz1@counselingspacepaz.com/
+hero_cta_external: true
+---
 
-  <section class="section section--features section--light-lavender">
-    <div class="wrapper">
-      <h2 class="text-center">pazの特徴</h2>
-      <div class="tiles">
-        <article class="tile">
-          <a href="{{ '/about/' | relative_url }}" class="tile__link">
-            <img src="{{ '/images/hero/counseling-room.jpg' | relative_url }}" alt="静かな個室のカウンセリングルームの様子">
-            <p>静かな個室で安心してお話しいただけます</p>
-          </a>
-        </article>
+<section class="spotlight section section--philosophy section--light-sage">
+  <div class="wrapper inner">
+    <h2>カウンセリングスペースpazの理念</h2>
+    <p>
+      カウンセリングスペースpaz（パス）は、静岡県沼津市にある臨床心理士・公認心理師による心理相談室です。
+      pazは、スペイン語で「平和・安らぎ」を意味します。ここに訪れるすべての方が、心穏やかに、自分らしく過ごせるように――
+      女性と15歳以下のお子さんを対象に、安心して話せる場所を提供しています。
+    </p>
+  </div>
+</section>
 
-        <article class="tile">
-          <a href="{{ '/counselor/' | relative_url }}" class="tile__link"> 
-            <img src="{{ '/images/thumbs/booking.jpg' | relative_url }}" alt="ご予約画面の画像">
-            <p>臨床心理士・公認心理師が、経験と根拠に基づき支援</p>
-          </a>
-        </article>
+<section class="section section--features section--light-lavender">
+  <div class="wrapper">
+    <h2 class="text-center">pazの特徴</h2>
 
-        <article class="tile">
-          <a href="{{ '/about/' | relative_url }}" class="tile__link">
-            <img src="{{ '/images/banners/green-vase.jpg' | relative_url }}" alt="オンライン相談のイメージ画像">
-            <p>ご自宅からのオンラインカウンセリングに対応</p>
-          </a>
-        </article>
+    <div class="tiles">
+      <article class="tile">
+        <a href="{{ '/about/' | relative_url }}" class="tile__link">
+                    <img src="{{ '/images/hero/counseling-room.jpg' | relative_url }}" alt="静かで明るい個室のカウンセリングルームの様子">
+          <h3>安心</h3>
+          <p>静かな個室で安心してお話しいただけます</p>
+        </a>
+      </article>
 
-        <article class="tile tile--privacy">
-          <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" class="tile__link" target="_blank" rel="noopener noreferrer">
-            <img src="{{ '/images/sections/holding-hand-illustration.png' | relative_url }}" alt="手を握り合うイラスト">
-            <p>個人情報と記録を厳格に管理し、安心に配慮</p>
-          </a>
-        </article>
-        
-        <article class="tile tile--compliance">
-          <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000161103.html" target="_blank" rel="noopener noreferrer" class="tile__link">
-            <p>公認心理師法に基づき、法令・守秘義務を厳守</p>
-          </a>
-        </article>
+      <article class="tile">
+        <a href="{{ '/counselor/' | relative_url }}" class="tile__link">
+                    <img src="{{ '/images/thumbs/booking.jpg' | relative_url }}" alt="オンライン予約画面で専門家を探すイメージ">
+          <h3>専門</h3>
+          <p>臨床心理士・公認心理師が、経験と根拠に基づき支援</p>
+        </a>
+      </article>
 
-        <article class="tile">
-          <a href="https://lin.ee/KoUph8Z" class="tile__link" target="_blank" rel="noopener noreferrer">
-            <img src="{{ '/images/banners/line-contact.png' | relative_url }}" alt="LINEでお問い合わせ">
-            <p>LINEで気軽にお問い合わせいただけます</p>
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
+      <article class="tile">
+        <a href="{{ '/about/' | relative_url }}" class="tile__link">
+                    <img src="{{ '/images/banners/green-vase.jpg' | relative_url }}" alt="パソコンを使ったオンライン対応のイメージ画像">
+          <h3>オンライン</h3>
+          <p>ご自宅からのオンラインカウンセリングに対応</p>
+        </a>
+      </article>
 
-  ---
+      <article class="tile tile--privacy">
+        <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" class="tile__link" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ '/images/sections/holding-hand-illustration.png' | relative_url }}" alt="優しく手を握り合うプライバシー配慮を示すイラスト">
+          <h3>プライバシー</h3>
+          <p>個人情報と記録を厳格に管理し、安心に配慮</p>
+        </a>
+      </article>
 
-  <footer class="site-footer">
-    <div class="wrapper footer-inner">
-      <p>
-        <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
-      </p>
-    </div>
-  </footer>
-</body>
-</html>
+      <article class="tile tile--compliance">
+        <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000161103.html" target="_blank" rel="noopener noreferrer" class="tile__link">
+          <h3>コンプライアンス</h3>
+          <p>公認心理師法に基づき、法令・守秘義務を厳守</p>
+        </a>
+      </article>
+
+      <article class="tile">
+        <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer" class="tile__link">
+                              <img src="{{ '/images/banners/line-contact.png' | relative_url }}" alt="LINEアプリでの気軽なお問い合わせを促すバナー画像">
+          <h3>LINE</h3>
+          <p>LINEで気軽にお問い合わせいただけます</p>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
