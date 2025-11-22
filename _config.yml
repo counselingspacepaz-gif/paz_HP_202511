@@ -35,3 +35,8 @@ sass:
 exclude:
   - README.md
   - node_modules
+
+include:
+  - assets
+  - images
+  - content
