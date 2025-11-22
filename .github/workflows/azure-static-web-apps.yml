@@ -24,10 +24,12 @@ jobs:
           gem install bundler
           bundle init
           # 最低限のGemfileを生成（jekyll / jekyll-seo-tag / jekyll-feed）
-          echo "source 'https://rubygems.org'" > Gemfile
-          echo "gem 'jekyll', '~> 4.3'" >> Gemfile
-          echo "gem 'jekyll-seo-tag', '~> 2.8'" >> Gemfile
-          echo "gem 'jekyll-feed', '~> 0.17'" >> Gemfile
+          cat > Gemfile <<'GEMFILE'
+          source 'https://rubygems.org'
+          gem 'jekyll', '~> 4.3'
+          gem 'jekyll-seo-tag', '~> 2.8'
+          gem 'jekyll-feed', '~> 0.17'
+          GEMFILE
           bundle install
 
       - name: Build Jekyll
@@ -35,9 +37,14 @@ jobs:
         env:
           JEKYLL_ENV: production
 
+      - name: Debug artifact (optional)
+        run: ls -la _site
+
       - name: Upload to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          app_location: _site
+          action: upload
           skip_app_build: true
+          app_location: _site             # ← Jekyll既定の出力先に合わせる
+          production_branch: main
