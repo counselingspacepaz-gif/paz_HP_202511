@@ -8,6 +8,30 @@
   --header-height: 66px; 
 }
 
+/* ★ 推奨追加: 全画像統一とdisplay:block ★ */
+img { 
+  max-width: 100%; 
+  height: auto; 
+  display: block; 
+}
+
+/* ★ 必須修正: スキップリンク ★ */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -40px; /* 初期非表示 */
+  z-index: 9999;
+  background: var(--color-accent-strong);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 0 0 4px 4px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0; /* :focusで表示 */
+}
+
 *{ box-sizing: border-box; }
 html{ font-size: 16px; }
 body{
@@ -18,13 +42,7 @@ body{
   line-height: 1.7;
 }
 
-/* ★ 修正 1: 画像のベースルール追加（暴走防止） */
-img { 
-  max-width: 100%; 
-  height: auto; 
-  display: block; 
-}
-/* ★ 推奨 5: stickyヘッダー対策 */
+/* ★ 推奨追加: stickyヘッダー対策 ★ */
 .main {
   padding-top: var(--header-height);
 }
@@ -44,11 +62,12 @@ a:hover{ color: var(--color-accent-strong); }
 .site-nav ul{ list-style: none; margin:0; padding:0; display:flex; gap:1rem; }
 .site-nav a{ text-decoration: none; }
 
-/* ★ 修正 4: ナビトグルのPC非表示（ヘッダー崩れ防止） */
+/* PCでトグル非表示＆ナビ表示 */
 @media (min-width: 769px){
   .nav-toggle { display: none; }
   .site-nav { display: block !important; }
 }
+/* モバイルナビゲーション */
 @media (max-width: 768px){
   .site-nav{ display:none; }
   .site-nav.is-open{ display:block; }
@@ -57,25 +76,27 @@ a:hover{ color: var(--color-accent-strong); }
 
 
 /* ヒーロー */
-/* ★ 修正 2: ヒーロー高さの確保 */
 .section--hero{ 
   position: relative; 
   overflow: hidden; 
   min-height: 50vh; 
 }
 .hero__bg{
-  background-image: url("/images/hero/counseling-room.jpg"); /* ★ 絶対パスに修正（推奨）★ */
+  background-image: url("/images/hero/counseling-room.jpg"); 
   background-size: cover; background-position: center; background-repeat: no-repeat;
   position: absolute; inset: 0; opacity: 0.85;
 }
 .hero__inner{ position: relative; padding: 10vh 0; text-align: center; }
-/* ★ 修正 3: コメント切れの解消（text-shadow行をクリーンに保つ） ★ */
 .hero__title{ font-size: clamp(1.8rem, 4.5vw, 3rem); margin: 0 0 .5rem; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.3);}
 .hero__subtitle{ color: #eef; margin: 0 0 1rem; }
 .hero__cta .btn{ display: inline-block; }
 
 
-/* ★ 必須修正 1: tilesのグリッド定義（カード整列） ★ */
+/* 特徴カード (Tiles) */
+.section--features { 
+  padding: 3rem 0;
+}
+/* ★ 必須修正: tilesのグリッド定義 ★ */
 .tiles {
   display: grid;
   gap: 1.5rem;
@@ -95,18 +116,79 @@ a:hover{ color: var(--color-accent-strong); }
     grid-template-columns: repeat(3, 1fr);
   }
 }
+.tile {
+  border: 1px solid var(--color-muted);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.tile__link {
+  display: block;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--color-text);
+  height: 100%;
+}
+.tile__link:hover {
+  background: rgba(180, 151, 189, 0.1); /* 薄いラベンダーのホバー */
+}
+/* ★ 必須修正: tile img（object-fit:cover追加） ★ */
 .tile img {
+  width: 100%;
+  height: auto;
   margin-bottom: 1rem;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 
 /* ボタン */
-.btn{ padding: .75rem 1.25rem; border-radius: .35rem; border: 2px solid var(--color-accent); background: var(--color-accent); color: #fff; text-decoration: none; font-weight: 700; }
-.btn:hover{ background: var(--color-accent-strong); border-color: var(--color-accent-strong); }
+/* ★ 必須修正: ボタンのラベンダー背景とホバー時濃ラベンダー ★ */
+.btn{ 
+  padding: .75rem 1.25rem; 
+  border-radius: .35rem; 
+  border: 2px solid var(--color-accent); 
+  background: var(--color-accent); 
+  color: #fff; 
+  text-decoration: none; 
+  font-weight: 700; 
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn:hover{ 
+  background: var(--color-accent-strong); 
+  border-color: var(--color-accent-strong); 
+}
+
+/* 予約CTA */
+.section--cta {
+  padding: 3rem 0;
+  background: var(--color-muted);
+}
+/* ★ 必須修正: cta-box ★ */
+.cta-box {
+  text-align: center;
+  padding: 2rem;
+}
+.cta-box h2 {
+  margin-top: 0;
+  font-size: 2rem;
+}
 
 /* フッター */
-.site-footer{ background: var(--color-muted); margin-top: 2rem; }
-.footer-inner{ display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content: space-between; padding: 1rem 0; }
+/* ★ 必須修正: フッターの背景とパディング ★ */
+.site-footer{ 
+  background: var(--color-muted); 
+  margin-top: 2rem; 
+  padding: 1rem 0; 
+}
+/* ★ 必須修正: フッターインナーのFlex ★ */
+.footer-inner{ 
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:1rem; 
+  align-items:center; 
+  justify-content: space-between; 
+}
 .footer-privacy a{ text-decoration: underline; }
 .copyright small{ color: #666; }
 
