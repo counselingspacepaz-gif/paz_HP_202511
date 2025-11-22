@@ -1,0 +1,37 @@
+# Jekyll 基本設定（SWA運用）
+title: Counseling Space paz
+description: 女性と子どものためのカウンセリング。臨床心理士・公認心理師が静岡県沼津市で安心してお話を伺います。
+url: https://counselingspacepaz.com   # SWAの本番URL（確定）
+baseurl: ""                           # ルート公開のため空
+destination: _site
+permalink: /:categories/:title/
+
+# 生成対象の追加（静的アセットを公開する）
+include:
+  - assets
+  - images
+  - content
+
+# Markdown・プラグイン
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# SEOタグの既定（必要に応じて上書き）
+# ページ側で `image:` を定義しない場合のOGP既定
+defaults:
+  - scope:
+      path: ""
+    values:
+      og_image: /images/sections/lavender-background.jpg
+      layout: default
+
+# ビルドの安全設定
+sass:
+  style: compressed
+
+# Exclude（不要ファイルがあれば追記）
+exclude:
+  - README.md
+  - node_modules

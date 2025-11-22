@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% comment %}
+  SEOタグ（title/description/canonical/OG/Twitter 自動生成）
+  {% endcomment %}
+  {% seo %}
+
+  {% comment %} Canonical URLの安全化: /index.htmlをルートパス / へ置換 {% endcomment %}
+  {% assign canonical_url = page.url | replace:'/index.html','/' | absolute_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% comment %}
+  Favicon（相対＋relative_url）
+  {% endcomment %}
+  <link rel="icon" href="{{ '/images/logo/favicon.ico' | relative_url }}" type="image/x-icon" />
+
+  {% comment %}
+  Fonts
+  {% endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet" />
+
+  {% comment %}
+  CSS（キャッシュ破壊クエリを付与、relative_url統一）
+  {% endcomment %}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.build_version }}" />
+</head>
+
+<body>
+  {% comment %} Skip Link {% endcomment %}
+  <a href="#main" class="skip-link">コンテンツにスキップ</a>
+
+  {% include header.html %}
+
+  {% comment %} HERO SECTION (Hero Titleがある場合のみ表示) {% endcomment %}
+  {% if page.hero_title %}
+    {% include hero.html %}
+  {% endif %}
+
+  <main id="main" tabindex="-1" class="main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  {% comment %}
+  JSは末尾1箇所のみ／defer指定／relative_url統一／キャッシュ破壊
+  {% endcomment %}
+  <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.build_version }}" defer></script>
+</body>
+</html>

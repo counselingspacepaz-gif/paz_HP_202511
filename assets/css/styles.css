@@ -1,0 +1,63 @@
+/* 文字の視認性を優先するベース */
+:root{
+  --color-bg: #ffffff;
+  --color-text: #4a5b3a;        /* セージ */
+  --color-accent: #b497bd;      /* ラベンダー */
+  --color-accent-strong: #9b7aa5;
+  --color-muted: #f4f1f7;       /* 薄ラベンダー背景 */
+}
+
+*{ box-sizing: border-box; }
+html{ font-size: 16px; }
+body{
+  margin:0;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: "Zen Maru Gothic", system-ui, -apple-system, "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.7;
+}
+
+.wrapper{ width: min(1100px, 92%); margin: 0 auto; }
+
+a{ color: var(--color-text); text-decoration: underline; text-decoration-color: var(--color-accent); }
+a:hover{ color: var(--color-accent-strong); }
+
+/* ヘッダー */
+.site-header{ position: sticky; top: 0; background: var(--color-bg); z-index: 1000; border-bottom: 1px solid #ddd; }
+.header-inner{ display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .5rem 0; }
+.site-logo img{ display:block; height:56px; }
+
+/* ナビ */
+.nav-toggle{ font-size: 1.25rem; background: transparent; border: 1px solid var(--color-text); padding: .4rem .6rem; border-radius: .25rem; }
+.site-nav ul{ list-style: none; margin:0; padding:0; display:flex; gap:1rem; }
+.site-nav a{ text-decoration: none; }
+@media (max-width: 768px){
+  .site-nav{ display:none; }
+  .site-nav.is-open{ display:block; }
+  .site-nav ul{ flex-direction: column; padding: .5rem 0; }
+}
+
+/* ヒーロー */
+.section--hero{ position: relative; overflow: hidden; }
+.hero__bg{
+  background-image: url("../../images/hero/counseling-room.jpg"); /* 相対経路（CSS→imagesは2階層戻り） */
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  position: absolute; inset: 0; opacity: 0.85;
+}
+.hero__inner{ position: relative; padding: 10vh 0; text-align: center; }
+.hero__title{ font-size: clamp(1.8rem, 4.5vw, 3rem); margin: 0 0 .5rem; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.3);}
+.hero__subtitle{ color: #eef; margin: 0 0 1rem; }
+.hero__cta .btn{ display: inline-block; }
+
+/* ボタン */
+.btn{ padding: .75rem 1.25rem; border-radius: .35rem; border: 2px solid var(--color-accent); background: var(--color-accent); color: #fff; text-decoration: none; font-weight: 700; }
+.btn:hover{ background: var(--color-accent-strong); border-color: var(--color-accent-strong); }
+
+/* フッター */
+.site-footer{ background: var(--color-muted); margin-top: 2rem; }
+.footer-inner{ display:flex; flex-wrap:wrap; gap:1rem; align-items:center; justify-content: space-between; padding: 1rem 0; }
+.footer-privacy a{ text-decoration: underline; }
+.copyright small{ color: #666; }
+
+/* A11y */
+.visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }

@@ -1,0 +1,98 @@
+---
+layout: default
+title: Counseling Space paz
+description: 女性と子どものための相談機関です。臨床心理士・公認心理師が静岡県沼津市で安心してお話を伺います（静岡県沼津市）。
+# OGP画像はimageで定義
+image: /images/hero/sprout-in-hand.jpg
+permalink: /
+# ヒーロー設定の再定義（_includes/hero.html で利用）
+hero_class: home
+hero_title: 女性と子どものための相談機関です
+hero_subtitle: pazとは平和・安らぎという意味です
+hero_cta: ご予約はこちら
+hero_cta_url: https://outlook.office.com/book/paz1@counselingspacepaz.com/
+hero_image: /images/hero/counseling-room.jpg
+---
+
+{% comment %}
+Heroセクションは _layouts/default.html で自動的にインクルードされる。
+このページではコンテンツは空、CSSでcounseling-room.jpgを使う。
+{% endcomment %}
+
+<section class="spotlight section section--philosophy section--light-sage">
+  <div class="wrapper inner">
+    <h2>カウンセリングスペースpazの理念</h2>
+    <p>
+      カウンセリングスペースpaz（パス）は、静岡県沼津市にある臨床心理士による心理相談室です。
+      pazは、スペイン語で「平和・安らぎ」を意味します。ここに訪れるすべての方が、心穏やかに、自分らしく過ごせるように――
+      女性と15歳以下のお子さんを対象に、安心して話せる場所を提供しています。
+    </p>
+  </div>
+</section>
+
+<section class="section section--features section--light-lavender">
+  <div class="wrapper">
+    <h2 class="text-center">pazの特徴</h2>
+    <div class="tiles">
+      {% comment %} 理想はここで {% include tiles.html %} を使うことだが、手動で修復 {% endcomment %}
+
+      <article class="tile">
+        <a href="{{ '/about/' | relative_url }}" class="tile__link">
+          <img src="{{ '/images/sections/hands-heart.png' | relative_url }}" alt="安心アイコン">
+          <h3>安心</h3>
+          <p>静かな個室で安心してお話しいただけます</p>
+        </a>
+      </article>
+
+      <article class="tile">
+        <a href="{{ '/about/' | relative_url }}" class="tile__link">
+          <img src="{{ '/images/sections/waterdrop.png' | relative_url }}" alt="専門アイコン">
+          <h3>専門</h3>
+          <p>臨床心理士・公認心理師が、経験と根拠に基づき支援</p>
+        </a>
+      </article>
+
+      <article class="tile">
+        <a href="{{ '/booking/' | relative_url }}" class="tile__link">
+          <img src="{{ '/images/sections/me.png' | relative_url }}" alt="オンラインアイコン">
+          <h3>オンライン</h3>
+          <p>ご自宅からのオンラインカウンセリングに対応</p>
+        </a>
+      </article>
+
+      <article class="tile tile--privacy">
+        <a href="{{ '/about/' | relative_url }}" class="tile__link">
+          <img src="{{ '/images/sections/holding-hands-illustration.png' | relative_url }}" alt="プライバシー配慮のイラスト">
+          <h3>プライバシー</h3>
+          <p>守秘義務を厳守します</p>
+        </a>
+      </article>
+
+      <article class="tile tile--compliance">
+        <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000161103.html" target="_blank" rel="noopener noreferrer" class="tile__link">
+          <h3>コンプライアンス</h3>
+          <p>厚生労働省の倫理規定に基づき運営</p>
+        </a>
+      </article>
+
+      <article class="tile">
+        <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer" class="tile__link">
+          <img src="{{ '/images/icons/icon-line.png' | relative_url }}" alt="LINEアイコン">
+          <h3>LINE</h3>
+          <p>LINEで気軽にお問い合わせいただけます</p>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--cta">
+  <div class="wrapper">
+    <div class="cta-box">
+      <h2>ご予約はこちらから</h2>
+      <p>予約後に確認メールが届きます。面接前日にリマインダーも送信。キャンセル・変更は確認メールのリンクから可能だ。</p>
+      <p>
+        <a href="{{ page.hero_cta_url }}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+          予約ページへ進む
+        </a>
+      </

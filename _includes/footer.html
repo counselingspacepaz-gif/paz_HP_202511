@@ -1,0 +1,29 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="wrapper footer-inner">
+    
+    {% comment %} プライバシーポリシー {% endcomment %}
+    <div class="footer-privacy">
+      <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+        🔐 プライバシーポリシー
+      </a>
+    </div>
+
+    {% comment %} SNSリンク群 (LINE, Instagram, Xなど、必要に応じてリスト化) {% endcomment %}
+    <nav class="sns-footer" aria-label="ソーシャルメディアリンク">
+      <ul class="sns-list">
+        <li>
+          <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ">
+             <img src="{{ '/images/icons/icon-line.png' | relative_url }}" alt="LINEアイコン">
+          </a>
+        </li>
+        {% comment %} 必要に応じてInstagram, Xなどの他のリンクをここに追加 {% endcomment %}
+      </ul>
+    </nav>
+    
+    {% comment %} 著作権表示と年号のLiquidタグ {% endcomment %}
+    <div class="copyright">
+      <small>&copy; {{ site.time | date: '%Y' }} Counseling Space paz</small>
+    </div>
+
+  </div>
+</footer>
