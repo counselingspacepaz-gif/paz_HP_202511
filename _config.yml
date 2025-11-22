@@ -40,3 +40,5 @@ include:
   - assets
   - images
   - content
+
+build_version: 20251122-1

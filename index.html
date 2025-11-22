@@ -2,28 +2,26 @@
 layout: default
 title: Counseling Space paz
 description: 女性と子どものための相談機関です。臨床心理士・公認心理師が静岡県沼津市で安心してお話を伺います（静岡県沼津市）。
-# OGP画像はimageで定義
-image: /images/hero/sprout-in-hand.jpg
 permalink: /
-# ヒーロー設定の再定義（_includes/hero.html で利用）
-hero_class: home
+
+# OGP画像（jekyll-seo-tag に渡す）
+image: /images/hero/sprout-in-hand.jpg
+
+# ヒーロー設定（includeで利用）
+hero_class: hero--home
 hero_title: 女性と子どものための相談機関です
 hero_subtitle: pazとは平和・安らぎという意味です
-hero_cta: ご予約はこちら
+hero_image: /images/hero/sprout-in-hand.jpg
+hero_cta: 予約ページへ
 hero_cta_url: https://outlook.office.com/book/paz1@counselingspacepaz.com/
-hero_image: /images/hero/counseling-room.jpg
+hero_cta_external: true
 ---
-
-{% comment %}
-Heroセクションは _layouts/default.html で自動的にインクルードされる。
-このページではコンテンツは空、CSSでcounseling-room.jpgを使う。
-{% endcomment %}
 
 <section class="spotlight section section--philosophy section--light-sage">
   <div class="wrapper inner">
     <h2>カウンセリングスペースpazの理念</h2>
     <p>
-      カウンセリングスペースpaz（パス）は、静岡県沼津市にある臨床心理士による心理相談室です。
+      カウンセリングスペースpaz（パス）は、静岡県沼津市にある臨床心理士・公認心理師による心理相談室です。
       pazは、スペイン語で「平和・安らぎ」を意味します。ここに訪れるすべての方が、心穏やかに、自分らしく過ごせるように――
       女性と15歳以下のお子さんを対象に、安心して話せる場所を提供しています。
     </p>
@@ -33,20 +31,19 @@ Heroセクションは _layouts/default.html で自動的にインクルード�
 <section class="section section--features section--light-lavender">
   <div class="wrapper">
     <h2 class="text-center">pazの特徴</h2>
-    <div class="tiles">
-      {% comment %} 理想はここで {% include tiles.html %} を使うことだが、手動で修復 {% endcomment %}
 
+    <div class="tiles">
       <article class="tile">
         <a href="{{ '/about/' | relative_url }}" class="tile__link">
-          <img src="{{ '/images/sections/hands-heart.png' | relative_url }}" alt="安心アイコン">
+          <img src="{{ '/images/hero/counseling-room.jpg' | relative_url }}" alt="静かなカウンセリング室">
           <h3>安心</h3>
           <p>静かな個室で安心してお話しいただけます</p>
         </a>
       </article>
 
       <article class="tile">
-        <a href="{{ '/about/' | relative_url }}" class="tile__link">
-          <img src="{{ '/images/sections/waterdrop.png' | relative_url }}" alt="専門アイコン">
+        <a href="{{ '/counselor/' | relative_url }}" class="tile__link">
+          <img src="{{ '/images/thumbs/booking.jpg' | relative_url }}" alt="専門的な支援イメージ">
           <h3>専門</h3>
           <p>臨床心理士・公認心理師が、経験と根拠に基づき支援</p>
         </a>
@@ -54,14 +51,14 @@ Heroセクションは _layouts/default.html で自動的にインクルード�
 
       <article class="tile">
         <a href="{{ '/booking/' | relative_url }}" class="tile__link">
-          <img src="{{ '/images/sections/me.png' | relative_url }}" alt="オンラインアイコン">
+          <img src="{{ '/images/banners/green-vase.jpg' | relative_url }}" alt="オンライン対応のイメージ">
           <h3>オンライン</h3>
           <p>ご自宅からのオンラインカウンセリングに対応</p>
         </a>
       </article>
 
       <article class="tile tile--privacy">
-        <a href="{{ '/about/' | relative_url }}" class="tile__link">
+        <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" class="tile__link" target="_blank" rel="noopener noreferrer">
           <img src="{{ '/images/sections/holding-hands-illustration.png' | relative_url }}" alt="プライバシー配慮のイラスト">
           <h3>プライバシー</h3>
           <p>守秘義務を厳守します</p>
@@ -71,7 +68,7 @@ Heroセクションは _layouts/default.html で自動的にインクルード�
       <article class="tile tile--compliance">
         <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000161103.html" target="_blank" rel="noopener noreferrer" class="tile__link">
           <h3>コンプライアンス</h3>
-          <p>厚生労働省の倫理規定に基づき運営</p>
+          <p>公認心理師法に基づき、法令・守秘義務を厳守</p>
         </a>
       </article>
 
@@ -95,4 +92,7 @@ Heroセクションは _layouts/default.html で自動的にインクルード�
         <a href="{{ page.hero_cta_url }}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
           予約ページへ進む
         </a>
-      </
+      </p>
+    </div>
+  </div>
+</section>
