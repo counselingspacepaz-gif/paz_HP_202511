@@ -1,44 +1,22 @@
-# Jekyll 基本設定（SWA運用）
+# サイトの基本設定
 title: Counseling Space paz
-description: 女性と子どものためのカウンセリング。臨床心理士・公認心理師が静岡県沼津市で安心してお話を伺います。
-url: https://counselingspacepaz.com   # SWAの本番URL（確定）
-baseurl: ""                           # ルート公開のため空
-destination: _site
-permalink: /:categories/:title/
+email: info@counselingspacepaz.com
+description: >- 
+  静岡県沼津市にある「カウンセリングスペース paz」の公式ウェブサイトです。
+  自然と調和する心地よい空間で、心の安らぎを提供します。
 
-# 生成対象の追加（静的アセットを公開する）
-include:
-  - assets
-  - images
-  - content
+# 本番環境のURL設定 (OGP絶対URL化のため必須)
+url: "https://counselingspacepaz.com" # 本番URLへ確定
 
-# Markdown・プラグイン
-markdown: kramdown
-plugins:
-  - jekyll-seo-tag
-  - jekyll-feed
+# キャッシュ破壊用バージョン番号 (CIで自動更新することを推奨)
+build_version: "20251123-1"
 
-# SEOタグの既定（必要に応じて上書き）
-# ページ側で `image:` を定義しない場合のOGP既定
-defaults:
-  - scope:
-      path: ""
-    values:
-      og_image: /images/sections/lavender-background.jpg
-      layout: default
+# OGP/SEO設定
+locale: ja_JP # jekyll-seo-tagでog:localeを出力
 
-# ビルドの安全設定
-sass:
-  style: compressed
-
-# Exclude（不要ファイルがあれば追記）
-exclude:
-  - README.md
-  - node_modules
-
-include:
-  - assets
-  - images
-  - content
-
-build_version: 20251122-1
+# jekyll-seo-tag の設定 (canonicalの安全化: /index.htmlを除去)
+jekyll-seo-tag:
+  remove_index_file: true
+  
+# パス設定
+baseurl: ""
