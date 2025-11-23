@@ -57,6 +57,10 @@ a:hover{ color: var(--color-accent-strong); }
   padding: .4rem .6rem;
   border-radius: .25rem;
 }
+
+/* ★修正点: .site-navのデフォルトを非表示に固定（モバイル初期状態） */
+.site-nav{ display:none; }
+
 .site-nav ul{ list-style: none; margin:0; padding:0; display:flex; gap:1rem; }
 .site-nav a{ text-decoration: none; }
 
@@ -68,7 +72,8 @@ a:hover{ color: var(--color-accent-strong); }
 
 /* モバイル (768px以下): ナビ開閉制御 */
 @media (max-width: 768px){
-  .site-nav{ display:none; }
+  /* .site-nav{ display:none; } はグローバルで定義済のため削除 */
+  
   /* 開いた際のスタイル（header.html と main.js と連携） */
   .site-nav.is-open{
     display:block;
@@ -106,7 +111,7 @@ a:hover{ color: var(--color-accent-strong); }
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.85;
-  z-index: -1; /* ★修正点: Z-indexを -1 に設定し、最背面に固定★ */
+  z-index: -1; /* Z-indexを -1 に設定し、最背面に固定 */
 }
 
 /* オーバーレイ（中間: 0） */
@@ -115,7 +120,7 @@ a:hover{ color: var(--color-accent-strong); }
   position: absolute;
   inset: 0;
   background: var(--color-overlay); /* 濃度0.50 */
-  z-index: 0; /* ★修正点: Z-indexを 0 に設定し、背景と前面要素の間に固定★ */
+  z-index: 0; /* Z-indexを 0 に設定し、背景と前面要素の間に固定 */
 }
 
 /* テキストとCTA（最前面: 1） */
