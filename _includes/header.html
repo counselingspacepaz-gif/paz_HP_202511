@@ -1,44 +1,35 @@
-<!-- ====== HEADER (Forty Template 準拠) ====== -->
-<header class="site-header" role="banner">
-  <div class="container header-inner">
-    <!-- ロゴ: site.titleをaltに適用 -->
-    <a class="site-logo" href="{{ '/' | relative_url }}">
-      <img src="{{ '/images/logo/paz-logo.png' | relative_url }}" alt="{{ site.title }}のロゴ">
-    </a>
+{% comment %}
+  サイト全体に共通のヘッダー要素。
+  JSが依存するID: #menu-toggle (トグルボタン), #main-menu (ナビゲーション)
+{% endcomment %}
+<header class="site-header">
+  <div class="wrapper header-inner">
+    
+    {% comment %} ロゴ: トップページへのリンク {% endcomment %}
+    <div class="site-logo">
+      <a href="{{ '/' | relative_url }}" title="{{ site.title }}のトップページへ">
+        <img src="{{ '/images/logo/paz-logo-full.png' | relative_url }}" alt="{{ site.title }}ロゴ" width="200" height="56">
+      </a>
+    </div>
 
-    <!-- ナビゲーション (A11y対応) -->
-    <nav id="main-menu" class="site-nav" aria-label="主なナビゲーション">
-      <ul class="menu">
-        <!-- HOME -->
-        {% comment %} トップページ判定は '/' の厳密一致を維持 {% endcomment %}
-        <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>HOME</a></li>
-        <!-- pazについて -->
-        {% comment %} '/about/' を含むかで判定 {% endcomment %}
-        <li><a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about/' %}aria-current="page"{% endif %}>pazについて</a></li>
-        <!-- カウンセラー紹介 -->
-        {% comment %} '/counselor/' を含むかで判定 {% endcomment %}
-        <li><a href="{{ '/counselor/' | relative_url }}" {% if page.url contains '/counselor/' %}aria-current="page"{% endif %}>カウンセラー紹介</a></li>
-        <!-- ご予約はこちら (文言統一) -->
-        {% comment %} '/booking/' を含むかで判定 {% endcomment %}
-        <li><a href="{{ '/booking/' | relative_url }}" {% if page.url contains '/booking/' %}aria-current="page"{% endif %}>ご予約はこちら</a></li>
-        <!-- ブログ -->
-        {% comment %} '/blog/' を含むかで判定 {% endcomment %}
-        <li><a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog/' %}aria-current="page"{% endif %}>ブログ</a></li>
-        <!-- 連携医療機関 (外部リンク安全属性必須) -->
-        <li>
-          <a href="http://www.sugimen.com/" target="_blank" rel="noopener noreferrer">連携医療機関</a>
-        </li>
+    {% comment %} モバイル用ナビゲーション切り替えボタン {% endcomment %}
+    <button class="menu-toggle" id="menu-toggle" aria-label="メニューを開閉">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+
+    {% comment %} ナビゲーションメニュー: ID #main-menu を持つ {% endcomment %}
+    <nav class="site-nav" id="main-menu" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="{{ '/#services' | relative_url }}">サービス</a></li>
+        <li><a href="{{ '/#about' | relative_url }}">私について</a></li>
+        <li><a href="{{ '/#flow' | relative_url }}">利用の流れ</a></li>
+        <li><a href="{{ '/#access' | relative_url }}">アクセス</a></li>
+        <li><a href="{{ '/#contact' | relative_url }}">お問い合わせ</a></li>
       </ul>
     </nav>
-
-    <!-- メニュー開閉トグルボタン (A11y対応) -->
-    <button id="menu-toggle" class="menu-toggle" 
-            aria-expanded="false" 
-            aria-controls="main-menu"
-            aria-label="メニューを開閉">
-      <span class="visually-hidden">メニューを開閉</span>
-      ☰
-    </button>
   </div>
 </header>
-<!-- ====== /HEADER ====== -->
