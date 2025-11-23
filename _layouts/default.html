@@ -1,43 +1,99 @@
+{% comment %}
+  ================================================================================
+  1. SEO/OGP/ROBOTS制御: jekyll-seo-tagの実行前にフォールバック設定を行う
+  ================================================================================
+{% endcomment %}
+
+{% comment %} OGP/Twitterカード画像フォールバック設定: page.imageが未定義の場合、デフォルト画像を設定（jekyll-seo-tagはimageキーを参照するため） {% endcomment %}
+{% unless page.image %}
+  {% assign page.image = '/images/banners/lavender-background.jpg' %}
+{% endunless %}
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% comment %} SEOタグ（title/description/canonical/OG/Twitter 自動生成） {% endcomment %}
+  {% comment %} jekyll-seo-tagでtitle/description/canonical/OG/Twitterを自動生成 {% endcomment %}
   {% seo %}
 
-  {% comment %} Canonicalの安全化：/index.html を / に置換 {% endcomment %}
-  {% assign canonical_url = page.url | replace:'/index.html','/' | absolute_url %}
-  <link rel="canonical" href="{{ canonical_url }}">
+  {% comment %} robots制御: 開発環境の場合のみ noindex を付与（production時はindexがデフォルトで許可されるため明示的な許可タグは不要） {% endcomment %}
+  {% if jekyll.environment == "development" %}
+    <meta name="robots" content="noindex">
+  {% endif %}
+
+  {% comment %}
+    --- 構造化データ (JSON-LD) ---
+    サイト全体を表すOrganizationスキーマを埋め込む (SEO強化)。
+    ロゴURLは site.url と絶対パスを結合し、relative_urlの使用は避ける。
+  {% endcomment %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}",
+      "logo": "{{ site.url }}/images/logo/paz-logo.png"
+    }
+  </script>
 
   {% comment %} Favicon {% endcomment %}
   <link rel="icon" href="{{ '/images/logo/favicon.ico' | relative_url }}" type="image/x-icon" />
 
-  {% comment %} Google Fonts {% endcomment %}
+  {% comment %} Google Fonts (Zen Maru Gothic) + preconnect最適化 {% endcomment %}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet" />
 
   {% comment %} CSS（キャッシュ破壊クエリ＋relative_url） {% endcomment %}
   <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}?v={{ site.build_version }}" />
+
+  <!-- Skip link support (CSSをHEADに直接埋め込み、初期描画を最適化) -->
+  <style>
+    /* Skip Link (A11y: キーボード操作性向上) */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #9b7aa5;
+      color: #fff;
+      padding: 8px 16px;
+      z-index: 1000;
+      transition: top 0.3s;
+      text-decoration: none;
+      /* ARIA補強のため、可視時にもフォーカスリングを強調する */
+    }
+    .skip-link:focus {
+      top: 0; /* フォーカス時に画面上部に表示 */
+    }
+  </style>
 </head>
 
 <body>
-  {% comment %} Skip Link（A11y） {% endcomment %}
-  <a class="skip-link" href="#main">メインコンテンツへスキップ</a>
+  {% comment %} Skip Link（A11y）: aria-labelを追加し、href="#main"を維持 {% endcomment %}
+  <a class="skip-link" href="#main" aria-label="メインコンテンツへスキップ">メインコンテンツへスキップ</a>
 
+  {% comment %} Header: 共通コンポーネント読み込み {% endcomment %}
   {% include header.html %}
 
-  {% comment %} ヒーロー（定義があるページのみ表示） {% endcomment %}
+  {% comment %}
+    Hero: 共通コンポーネント読み込み
+    表示制御は hero_title の有無に依存する旧版の慣習を維持。
+  {% endcomment %}
   {% if page.hero_title %}
     {% include hero.html %}
   {% endif %}
 
+  {% comment %}
+    Main Content: ページ本文が展開される。
+    <main>タグ自体が role="main" を持つため、明示的な role 属性は削除。
+  {% endcomment %}
   <main id="main" tabindex="-1" class="main">
     {{ content }}
   </main>
 
+  {% comment %} Footer: 共通コンポーネント読み込み {% endcomment %}
   {% include footer.html %}
 
   {% comment %} JSは末尾・defer・relative_url・キャッシュ破壊 {% endcomment %}

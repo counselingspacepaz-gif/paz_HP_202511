@@ -1,37 +1,51 @@
-<section class="hero section section--hero {% if page.hero_class %}{{ page.hero_class }}{% endif %}"
-         role="banner" aria-label="ページ導入セクション">
-  {%- comment -%}
-  背景画像：フロントマターの hero_image を優先。未指定時はラベンダー背景にフォールバック。
-  {%- endcomment -%}
-  {%- assign hero_image_path = page.hero_image | default: '/images/banners/lavender-background.jpg' -%}
-  <div class="hero__bg"
-       style="background-image: url('{{ hero_image_path | relative_url }}');"
-       aria-hidden="true"></div>
+{% comment %}
+  ページ導入セクション (ヒーロー)
+  Fortyテンプレート準拠のDOM構造を維持し、フロントマターのデータを表示する。
+  背景画像は data-hero-bg 属性として渡し、assets/js/main.jsでCSS変数として設定される。
+{% endcomment %}
+{% assign hero_class = page.hero_class | default: '' %}
+{% assign hero_title = page.hero_title %}
+{% assign hero_subtitle = page.hero_subtitle %}
 
+{% comment %} CTAリンクの制御 {% endcomment %}
+{% assign hero_cta = page.hero_cta %}
+{% assign hero_cta_url = page.hero_cta_url %}
+{% assign is_external = page.hero_cta_external | default: false %}
+
+{% comment %} 背景画像のパス設定とフォールバック {% endcomment %}
+{% assign fallback_image = '/images/banners/lavender-background.jpg' %}
+{% assign bg_image_path = page.hero_image | default: fallback_image %}
+
+<section class="hero section section--hero {{ hero_class }}" role="banner" aria-label="ページ導入セクション">
+  
+  {% comment %} 背景画像は data属性で渡し、JSでCSS変数に設定する {% endcomment %}
+  <div class="hero__bg" aria-hidden="true" data-hero-bg="{{ bg_image_path | relative_url }}"></div>
+  
   <div class="wrapper">
     <div class="inner">
-      {%- if page.hero_title -%}
-        <h1 class="hero__title">{{ page.hero_title }}</h1>
-      {%- endif -%}
-
-      {%- if page.hero_subtitle -%}
-        <p class="hero__subtitle">{{ page.hero_subtitle }}</p>
-      {%- endif -%}
-
-      {%- if page.hero_cta and page.hero_cta_url -%}
-        {%- comment -%}
-        外部リンクの場合のみ target/_blank + rel/noopener を付与。
-        利用可：hero_cta_external: true（フロントマター）
-        {%- endcomment -%}
-        {%- assign is_external = page.hero_cta_external | default: false -%}
+      
+      {% comment %} タイトルはページ唯一のH1とする {% endcomment %}
+      <h1 class="hero__title">{{ hero_title }}</h1>
+      
+      {% if hero_subtitle %}
+        <p class="hero__subtitle">{{ hero_subtitle }}</p>
+      {% endif %}
+      
+      {% comment %} CTAリンクの表示と外部リンク属性の分岐 {% endcomment %}
+      {% if hero_cta and hero_cta_url %}
         <div class="cta-box">
-          <a class="btn btn--primary"
-             href="{% if is_external %}{{ page.hero_cta_url }}{% else %}{{ page.hero_cta_url | relative_url }}{% endif %}"
-             {%- if is_external -%} target="_blank" rel="noopener noreferrer"{%- endif -%} >
-             {{ page.hero_cta }}
-          </a>
+          {% if is_external %}
+            <a href="{{ hero_cta_url }}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              {{ hero_cta | default: 'ご予約はこちら' }}
+            </a>
+          {% else %}
+            <a href="{{ hero_cta_url | relative_url }}" class="btn btn--primary">
+              {{ hero_cta | default: 'ご予約はこちら' }}
+            </a>
+          {% endif %}
         </div>
-      {%- endif -%}
+      {% endif %}
+
     </div>
   </div>
 </section>

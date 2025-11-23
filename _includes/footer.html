@@ -1,29 +1,82 @@
+<!-- ====== FOOTER (Forty Template 準拠) ====== -->
 <footer class="site-footer" role="contentinfo">
-  <div class="wrapper footer-inner">
+  <div class="container footer-inner">
     
-    {% comment %} プライバシーポリシー {% endcomment %}
-    <div class="footer-privacy">
-      <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
-        🔐 プライバシーポリシー
-      </a>
-    </div>
-
-    {% comment %} SNSリンク群 (LINE, Instagram, Xなど、必要に応じてリスト化) {% endcomment %}
-    <nav class="sns-footer" aria-label="ソーシャルメディアリンク">
-      <ul class="sns-list">
-        <li>
-          <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer" aria-label="LINEでお問い合わせ">
-             <img src="{{ '/images/icons/icon-line.png' | relative_url }}" alt="LINEアイコン">
+    <!-- 連絡先情報 (住所・電話・メール) -->
+    <section class="footer-contact-address">
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        
+        {% comment %} 住所: Googleマップ検索URL (外部リンク、アイコンは絵文字に戻し依存性低減) {% endcomment %}
+        <li class="contact-item map-link">
+          <a href="https://www.google.com/maps/search/?api=1&query=〒410-0801 静岡県沼津市大手町4-3-28 リバーサイド大手町502" target="_blank" rel="noopener noreferrer"> 
+            <i aria-hidden="true">🗺️</i> 
+            〒410-0801 静岡県沼津市大手町4-3-28 リバーサイド大手町502
           </a>
         </li>
-        {% comment %} 必要に応じてInstagram, Xなどの他のリンクをここに追加 {% endcomment %}
+        
+        {% comment %} 電話: tel:リンク {% endcomment %}
+        <li class="contact-item">
+          <a href="tel:0559001615">
+            <i aria-hidden="true">📞</i> 
+            055-900-1615
+          </a>
+        </li>
+        
+        {% comment %} メール: mailto:リンク {% endcomment %}
+        <li class="contact-item">
+          <a href="mailto:info@counselingspacepaz.com">
+            <i aria-hidden="true">✉️</i> 
+            info@counselingspacepaz.com
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SNSリンク群 (A11y対応) -->
+    <nav class="sns-footer" aria-label="SNSリンク">
+      <ul class="sns-list">
+        {% comment %} LINE: バナー画像へのパスをrelative_urlで統一 {% endcomment %}
+        <li>
+          <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer" title="LINE公式アカウント">
+            <img src="{{ '/images/banners/line-contact.png' | relative_url }}" alt="LINE公式アカウント">
+          </a>
+        </li>
+        {% comment %} Instagram: icon-instagram.png (SNSアイコンのパスをrelative_urlで統一) {% endcomment %}
+        <li>
+          <a href="https://www.instagram.com/counselingspacepaz/" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <img src="{{ '/images/icons/icon-instagram.png' | relative_url }}" alt="Instagram">
+          </a>
+        </li>
+        {% comment %} Facebook: icon-facebook.png {% endcomment %}
+        <li>
+          <a href="https://www.facebook.com/counselingspacepaz" target="_blank" rel="noopener noreferrer" title="Facebook">
+            <img src="{{ '/images/icons/icon-facebook.png' | relative_url }}" alt="Facebook">
+          </a>
+        </li>
+        {% comment %} X (旧Twitter): icon-x.png {% endcomment %}
+        <li>
+          <a href="https://x.com/space_paz" target="_blank" rel="noopener noreferrer" title="X (旧Twitter)">
+            <img src="{{ '/images/icons/icon-x.png' | relative_url }}" alt="X (旧Twitter)">
+          </a>
+        </li>
       </ul>
     </nav>
-    
-    {% comment %} 著作権表示と年号のLiquidタグ {% endcomment %}
-    <div class="copyright">
-      <small>&copy; {{ site.time | date: '%Y' }} Counseling Space paz</small>
-    </div>
 
+    <!-- プライバシーポリシーリンク -->
+    <p class="footer-privacy">
+      {% comment %} PDFパスをrelative_urlで統一。アイコンを絵文字に戻す {% endcomment %}
+      <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+        <i aria-hidden="true">🔐</i> 
+        プライバシーポリシー
+      </a>
+    </p>
+
+    <!-- 著作権表示: 年号をLiquidで自動更新 -->
+    <p class="copyright">
+      &copy; {{ site.time | date: '%Y' }} Counseling Space paz
+    </p>
+    
   </div>
 </footer>
+<!-- ====== /FOOTER ====== -->
