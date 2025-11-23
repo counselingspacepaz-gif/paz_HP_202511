@@ -1,53 +1,52 @@
 name: Build & Deploy Jekyll to Azure Static Web Apps
 
 on:
-  push:
-    branches:
-      - main
+  push:
+    branches:
+      - main
 
 jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
+  build_and_deploy:
+    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
 
-      - name: Install Jekyll & Plugins
-        run: |
-          gem install bundler
-          bundle init
-          # 最低限のGemfileを生成（jekyll / jekyll-seo-tag / jekyll-feed）
-          cat > Gemfile <<'GEMFILE'
-          source 'https://rubygems.org'
-          gem 'jekyll', '~> 4.3'
-          gem 'jekyll-seo-tag', '~> 2.8'
-          gem 'jekyll-feed', '~> 0.17'
-          GEMFILE
-          bundle install
+      - name: Install Jekyll & Plugins
+        run: |
+          gem install bundler
+          bundle init
+          # 最低限のGemfileを生成（jekyll / jekyll-seo-tag / jekyll-feed）
+          cat > Gemfile <<'GEMFILE'
+          source 'https://rubygems.org'
+          gem 'jekyll', '~> 4.3'
+          gem 'jekyll-seo-tag', '~> 2.8'
+          gem 'jekyll-feed', '~> 0.17'
+          GEMFILE
+          bundle install
 
-      - name: Build Jekyll
-        run: bundle exec jekyll build --trace
-        env:
-          JEKYLL_ENV: production
+      - name: Build Jekyll
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
 
-      - name: Debug artifact (optional)
-        run: ls -la _site
+      - name: Debug artifact (optional)
+        run: ls -la _site
 
-      - name: Upload to Azure Static Web Apps
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          action: upload
-          skip_app_build: true
-          # **** 修正点1: app_location を推奨の '.' に変更 ****
-          app_location: "."
-          # **** 修正点2: output_location を _site に設定 ****
-          output_location: "_site" 
-          production_branch: main
+      - name: Upload to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          skip_app_build: true
+          # ビルド成果物のデプロイ先修正
+          app_location: "."
+          output_location: "_site"
+          production_branch: main
