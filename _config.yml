@@ -1,7 +1,7 @@
 # サイトの基本設定
 title: Counseling Space paz
 email: info@counselingspacepaz.com
-description: >- 
+description: >- # サイトの説明文をここに記述
   静岡県沼津市にある「カウンセリングスペース paz」の公式ウェブサイトです。
   自然と調和する心地よい空間で、心の安らぎを提供します。
 
@@ -13,6 +13,10 @@ build_version: "20251123-1"
 
 # OGP/SEO設定
 locale: ja_JP # jekyll-seo-tagでog:localeを出力
+
+# Jekyllプラグイン設定（★追記★: seoタグを有効化する）
+plugins:
+  - jekyll-seo-tag
 
 # jekyll-seo-tag の設定 (canonicalの安全化: /index.htmlを除去)
 jekyll-seo-tag:
