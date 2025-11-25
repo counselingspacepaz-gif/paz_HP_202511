@@ -1,0 +1,70 @@
+# =========================================================
+# 1. サイト情報
+# =========================================================
+title: "Counseling Space paz"
+email: "info@counselingspacepaz.com"
+
+description: "静岡県沼津市の女性と子どものためのカウンセリングスペース。心と生活の調和をサポートします。"
+
+# 本番URL（SWAでも Canonical/SEO の基準は本番ドメイン）
+url: "https://counselingspacepaz.com"
+baseurl: ""
+
+# =========================================================
+# 2. 言語・タイムゾーン
+# =========================================================
+lang: ja
+timezone: Asia/Tokyo
+
+# =========================================================
+# 3. ビルド設定
+# =========================================================
+permalink: pretty
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# =========================================================
+# 4. テーマ・プラグイン
+# =========================================================
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed
+
+theme: minima  # ブログ専用テーマ（固定ページには適用しない運用）
+
+# =========================================================
+# 5. include / exclude
+# =========================================================
+include:
+  - assets
+  - images
+  - content
+  - favicon.ico
+  - robots.txt
+  - _headers
+  - _redirects
+
+exclude:
+  - _site
+  - README.md
+  - .gitignore
+  - .github
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+
+# =========================================================
+# 6. defaults（ブログのみ Minima）
+# =========================================================
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "paz_author"
