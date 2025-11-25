@@ -1,3 +1,10 @@
+---
+
+## II. 最終最適化版 GitHub Actions ワークフロー
+
+ファイル名: `.github/workflows/azure-static-web-apps.yml`
+
+```yaml
 # .github/workflows/azure-static-web-apps.yml
 
 name: Azure Static Web Apps - Jekyll Site Deployment
@@ -8,8 +15,9 @@ on:
       - main
   workflow_dispatch:
 
+# 修正1: 権限を明示
 permissions:
-  contents: read # 修正1: secretの読み取りとコードチェックアウトに十分
+  contents: read
 
 jobs:
   build-and-deploy:
@@ -20,14 +28,14 @@ jobs:
       - name: 🚀 Checkout Repository
         uses: actions/checkout@v4
         with:
-          # 修正2: サブモジュール使用の有無が不明なため、テーマがサブモジュールでないなら false を推奨
+          # 修正2: 不要なサブモジュール取得をスキップ
           submodules: false 
 
       # 2. Ruby環境セットアップ
       - name: 💎 Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          # 修正3: 安定性を重視し、Rubyバージョンを 3.2 に固定（実務でのトラブル回避）
+          # 修正3: 安定性を重視し、実績のあるバージョンに固定
           ruby-version: '3.2'
           bundler-cache: true
 
@@ -37,18 +45,19 @@ jobs:
           bundle install
           
           # 修正4: デバッグ容易性のために --trace を追加
-          # 致命的なエラーの際に詳細なコールスタックを出力
           bundle exec jekyll build --trace
 
       # 4. SWAへのデプロイ
-      - name: 🌐 Build and Deploy to Azure Static Web Apps
-        # 修正5: v2アクションの使用を推奨
-        uses: azure/static-web-apps-deploy@v2
+      - name: 🌐 Deploy to Azure Static Web Apps
+        # 修正5/エラー対応: v2が見つからないため、安定版の v1 に戻す
+        uses: azure/static-web-apps-deploy@v1 
         with:
+          # シークレットを使用
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           
-          # SWAの設定（修正6: output_locationの確認はテンプレート設定次第）
+          # 修正1: SWA設定 - リポジトリルートをソースコードの場所とする
           app_location: "." 
+          # 修正6: SWA設定 - Jekyllのビルド成果物ディレクトリ
           output_location: "_site" 
           api_location: ""
           skip_api_build: true
