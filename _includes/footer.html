@@ -1,0 +1,78 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+
+    <section class="footer-contact-address">
+      <h3>Contact</h3> <!-- 見出し階層を調整 -->
+      <ul class="contact-list">
+
+        {% comment %} 住所: Googleマップ検索URL {% endcomment %}
+        <li class="contact-item map-link">
+          <a href="https://www.google.com/maps/search/?api=1&query=〒410-0801 静岡県沼津市大手町4-3-28 リバーサイド大手町502"
+             target="_blank" rel="noopener noreferrer" aria-label="Googleマップで住所を開く">
+            <i aria-hidden="true">🗺️</i>
+            〒410-0801 静岡県沼津市大手町4-3-28 リバーサイド大手町502
+          </a>
+        </li>
+
+        {% comment %} 電話: tel:リンク {% endcomment %}
+        <li class="contact-item">
+          <a href="tel:0559001615" aria-label="電話で連絡">
+            <i aria-hidden="true">📞</i>
+            055-900-1615
+          </a>
+        </li>
+
+        {% comment %} メール: mailto:リンク {% endcomment %}
+        <li class="contact-item">
+          <a href="mailto:info@counselingspacepaz.com" aria-label="メールで連絡">
+            <i aria-hidden="true">✉️</i>
+            info@counselingspacepaz.com
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <nav class="sns-footer" aria-label="SNSリンク">
+      <ul class="sns-list">
+        <li>
+          <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer"
+             title="LINE公式アカウント" aria-label="LINE公式アカウント">
+            <img src="{{ 'images/banners/line-contact.png' | relative_url }}" alt="LINE公式アカウント">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/counselingspacepaz/" target="_blank" rel="noopener noreferrer"
+             title="Instagram" aria-label="Instagram">
+            <img src="{{ 'images/icons/icon-instagram.png' | relative_url }}" alt="Instagram">
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/counselingspacepaz" target="_blank" rel="noopener noreferrer"
+             title="Facebook" aria-label="Facebook">
+            <img src="{{ 'images/icons/icon-facebook.png' | relative_url }}" alt="Facebook">
+          </a>
+        </li>
+        <li>
+          <a href="https://x.com/space_paz" target="_blank" rel="noopener noreferrer"
+             title="X (旧Twitter)" aria-label="X (旧Twitter)">
+            <img src="{{ 'images/icons/icon-x.png' | relative_url }}" alt="X (旧Twitter)">
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <p class="footer-privacy">
+      {% comment %} PDFリンク: プライバシーポリシー {% endcomment %}
+      <a href="{{ 'content/privacy-policy-paz.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer"
+         aria-label="プライバシーポリシー (PDF)">
+        <i aria-hidden="true">🔐</i>
+        プライバシーポリシー (PDF)
+      </a>
+    </p>
+
+    <p class="copyright">
+      © {{ site.time | date: '%Y' }} Counseling Space paz
+    </p>
+
+  </div>
+</footer>
