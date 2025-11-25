@@ -26,14 +26,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          # 失敗を早期化し、パイプラインエラーを捕捉
           set -euo pipefail
           
-          # Gemfileが存在しない場合のみ生成するガード
           if [ ! -f Gemfile ]; then
             echo "ℹ️ Gemfile not found. Generating a minimal one..."
             bundle init
-            # 💡 here-documentの内容はインデントを付けずに記述する
+            # 💡 ここからの行はYAMLのインデント構造から解放されるが、
+            #    シェルスクリプトのルール（GEMFILEの行頭配置）を守る必要がある。
             cat > Gemfile <<'GEMFILE'
 source 'https://rubygems.org'
 gem 'jekyll', '~> 4.3'
@@ -61,6 +60,6 @@ GEMFILE
           action: upload
           skip_app_build: true
           
-          # ✅ 修正済みの正しいパス設定
           app_location: "."
           output_location: "_site"
+          
