@@ -1,0 +1,403 @@
+/* filename: assets/css/styles.css */
+/* =========================================================
+    Counseling Space paz - Site Styles (Final Rebuild 2025-11-25)
+    Policy: Forty-compliant, A11y, Responsive, Performance Optimized.
+    Theme: Sage Green / Lavender.
+    ========================================================= */
+
+/* ---------------------------
+    1. 変数定義 (Variables)
+    --------------------------- */
+:root {
+    /* == Colors == */
+    --color-bg: #ffffff;
+    --color-sage: #3A5A40;               /* セージグリーン（本文・リンク通常色） */
+    --color-text-dark: #1C3832;          /* 濃セージ（テキスト） */
+    --color-text-muted: #5f7862;         /* 控えめなテキスト */
+    --color-lavender: #6E5AA3;           /* 濃ラベンダー（CTA/強調/ホバー） */
+    --color-lavender-light: #B9A6D3;     /* 中間ラベンダー（補助背景・薄） */
+    --color-lavender-soft: #EFEAF7;      /* 薄ラベンダー（セクション背景） */
+    --color-border: #cfd8cf;             /* ボーダー色 */
+
+    /* == Typography == */
+    --font-base: 'Zen Maru Gothic', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --line-height-body: 1.8;
+    --line-height-heading: 1.35;
+
+    /* == Layout & Spacing == */
+    --max-width: 1200px;
+    --space-sm: 1.5rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --radius: 6px;
+    --header-height: clamp(60px, 8vh, 70px);
+
+    /* == Focus / A11y == */
+    --focus-ring: 3px solid var(--color-lavender);
+    --focus-offset: 4px; 
+}
+
+/* ---------------------------
+    2. Reset & Base
+    --------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    color: var(--color-sage);
+    background: var(--color-bg);
+    font-family: var(--font-base);
+    font-size: clamp(16px, 1.1vw, 18px);
+    line-height: var(--line-height-body);
+}
+h1, h2, h3 { font-weight: 700; line-height: var(--line-height-heading); }
+p { margin-block: 1em; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* ---------------------------
+    3. アクセシビリティ (A11y)
+    --------------------------- */
+
+/* フォーカスリング */
+:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+}
+
+/* prefers-reduced-motion対応 */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ---------------------------
+    4. リンク・ボタン (Link & Button)
+    --------------------------- */
+a {
+    color: var(--color-sage);
+    text-decoration: none;
+    transition: color 0.2s, background-color 0.2s;
+}
+a:hover {
+    color: var(--color-lavender);
+}
+/* 修正7: 外部リンクアイコン: mask-image に切り替え（ズレ防止）*/
+a[target="_blank"]::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+    vertical-align: middle;
+    /* アイコンはSVGをベース64化。ストローク色は var(--color-sage) */
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M15 4h6m0 0v6m0-6L10 14'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    background-color: var(--color-sage);
+    transition: background-color 0.2s ease;
+}
+a[target="_blank"]:hover::after {
+    background-color: var(--color-lavender);
+}
+
+/* CTAボタン */
+.btn {
+    display: inline-block;
+    padding: clamp(10px, 1.2vw, 14px) clamp(20px, 2.5vw, 28px);
+    border-radius: var(--radius);
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    line-height: 1;
+    text-align: center;
+}
+.btn.primary {
+    background-color: var(--color-lavender);
+    color: #fff;
+}
+.btn.primary:hover {
+    background-color: var(--color-text-dark);
+    color: #fff;
+}
+.btn:focus-visible {
+    background: var(--color-lavender-soft);
+    color: var(--color-lavender);
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+}
+
+
+/* ---------------------------
+    5. コンテナ / セクション (Container / Section)
+    --------------------------- */
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 3.5vw, 1.5rem);
+}
+.section {
+    padding-block: clamp(3rem, 7vw, var(--space-lg));
+}
+/* 修正2: 通常セクション巻き込み防止（h1, h3を対象外に）*/
+.section .section__title {
+    font-size: clamp(24px, 3.5vw, 40px);
+    margin: 0 0 clamp(0.5rem, 1vw, 1rem);
+    text-align: center;
+    color: var(--color-lavender);
+}
+.section .section__lead {
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* ---------------------------
+    6. ヘッダー / ナビゲーション
+    --------------------------- */
+.site-header {
+    position: relative;
+    z-index: 1000;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    height: var(--header-height);
+}
+
+/* 修正1: display: none を visibility / opacity / pointer-events に変更（高）*/
+.site-nav {
+    position: absolute;
+    top: var(--header-height);
+    right: 0;
+    width: 100%;
+    background: var(--color-lavender-soft);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    z-index: 999;
+    
+    visibility: hidden; /* 初期状態: 非表示 */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease; 
+    transform: translateY(-10px); /* Transition開始位置 */
+}
+.site-nav.is-open { 
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+.site-nav .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: var(--space-sm) 0;
+    gap: 8px;
+}
+
+/* ハンバーガーボタン */
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: clamp(1.6rem, 5vw, 1.8rem);
+    color: var(--color-lavender);
+    cursor: pointer;
+    transition: transform 0.25s ease, opacity 0.2s;
+    min-width: 44px;
+    min-height: 44px;
+    /* 修正3: 初期 transform を明示 */
+    transform: rotate(0deg); 
+}
+.menu-toggle:hover { opacity: 0.8; }
+.menu-toggle[aria-expanded="true"] {
+    color: var(--color-text-dark);
+    transform: rotate(90deg);
+}
+
+/* PC幅調整 */
+@media (min-width: 768px) {
+    .menu-toggle { display: none; }
+    .site-nav {
+        /* 修正5: !importantを削除し、状態を通常化 */
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        
+        position: static;
+        box-shadow: none;
+        border-top: none;
+        background: transparent;
+    }
+    .site-nav .menu {
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 0;
+        gap: clamp(1rem, 2vw, 1.5rem);
+    }
+}
+
+/* ---------------------------
+    7. ヒーローセクション (Hero Section)
+    --------------------------- */
+.hero.section {
+    padding: 0;
+    position: relative;
+    width: 100%;
+    min-height: clamp(40vh, 50vh, 60vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ヒーローオーバーレイ */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(46,88,77,0.4);
+    pointer-events: none;
+}
+
+/* テキストコンテンツ */
+.hero .hero__content {
+    position: relative;
+    z-index: 2;
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+/* 修正2: セレクタを.hero内に限定 */
+.hero .hero__title,
+.hero .hero__content .section__title {
+    font-size: clamp(1.8rem, 2.5rem + 1vw, 3.2rem);
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+/* 修正4: セレクタを.hero内に限定 */
+.hero .hero__subtitle,
+.hero .hero__content .section__lead {
+    font-size: clamp(1rem, 1.1rem + 0.5vw, 1.3rem);
+    color: var(--color-text-dark);
+    padding: 0;
+    border-radius: 0;
+    display: inline;
+    /* 修正6: テキストシャドウを二重指定でコントラストを改善 */
+    text-shadow: 
+        0 0 1px #fff,  /* 弱い白影 */
+        0 0 4px #fff,  /* 強い白影 */
+        0 0 2px var(--color-text-dark); /* 濃セージ影 */
+}
+.hero .hero-image { display: none !important; }
+
+/* ---------------------------
+    8. グリッド / 特徴カード (.tiles)
+    --------------------------- */
+.tiles {
+    display: grid;
+    gap: var(--space-sm);
+    grid-auto-flow: row;
+    /* 修正8: !importantを削除。親セレクタを強化して優先度を確保 */
+    grid-auto-rows: minmax(0, 1fr); 
+    grid-template-columns: repeat(1, 1fr);
+    align-items: stretch;
+}
+.tiles > * {
+    grid-column: auto; /* !important削除 */
+    grid-row: auto; /* !important削除 */
+    margin: 0;
+}
+.tile img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+.tile h3 {
+    padding: 1rem;
+    font-size: clamp(16px, 1.5vw, 18px); 
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 768px以上 (タブレット：2列) */
+@media (min-width: 768px) {
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+}
+/* 1024px以上 (PC：3列) */
+@media (min-width: 1024px) {
+    .tiles { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------------------------
+    9. フッター
+    --------------------------- */
+.footer-privacy a:focus-visible {
+    /* 修正9: outline二重指定を統一 */
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+    /* dashを削除し、デフォルトのsolidに統一 */
+}
+/* その他フッター部分は変更なし */
+.site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-lavender-soft);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--color-sage);
+}
+.footer-inner {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+.footer-contact-address h2 {
+    font-size: 1.25rem;
+    color: var(--color-lavender);
+    margin: 0 0 0.5rem;
+}
+.footer-privacy {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.footer-privacy a {
+    background: var(--color-lavender);
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.footer-privacy a:hover {
+    background: var(--color-text-dark);
+}
+.copyright {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 0.8rem;
+}
