@@ -1,0 +1,3 @@
+# Counseling Space paz
+再構築開始（2025-11-25）
+MVP方針：HOME＋予約フォーム＋カウンセラー紹介
