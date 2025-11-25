@@ -1,54 +1,55 @@
-name: Build and Deploy Jekyll to Azure Static Web Apps
+# .github/workflows/azure-static-web-apps.yml
+name: Azure Static Web Apps - Jekyll Site Deployment
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - '_config.yml'
-      - 'assets/**'
-      - 'images/**'
-      - 'content/**'
-      - '**/*.html'
-      - '**/*.css'
-      - '**/*.md'
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
 
     steps:
-      - name: Checkout repository
+      # 1. リポジトリのチェックアウト
+      - name: 🚀 Checkout Repository
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
-      - name: Set up Ruby
+      # 2. Ruby 環境セットアップ
+      - name: 💎 Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.3'
           bundler-cache: true
 
-      - name: Install Jekyll and dependencies
+      # 3. Gemfile存在確認
+      - name: 📦 Ensure Gemfile exists
+        run: test -f Gemfile || (echo "Gemfile not found. Cannot install dependencies." && exit 1)
+
+      # 4. 依存関係インストールと Jekyll ビルド
+      - name: 📦 Install Dependencies and Build Jekyll Site
         run: |
           bundle install
-
-      - name: Build Jekyll site
-        run: |
           bundle exec jekyll build
 
-      - name: Deploy to Azure Static Web Apps
+      # 5. ビルド成果物チェック
+      - name: 🏗 Check Build Output
+        run: test -d _site || (echo "No _site directory found. Build failed." && exit 1)
+
+      # 6. SWA へのデプロイ（ビルドはスキップ、成果物アップロードのみ）
+      - name: 🌐 Deploy to Azure Static Web Apps
         uses: azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-
-          # これが今回のエラー原因の「必須パラメータ」
-          action: "upload"
-
-          # Jekyll の場合は app_location="."、output_location="_site"
-          app_location: "."
-          output_location: "_site"
-
-          # Azure Functions を使わない場合は空欄と skip_api_build=true
+          app_location: "/"           # ルート明示
+          output_location: "_site"    # ビルド成果物
           api_location: ""
           skip_api_build: true
+          skip_app_build: true        # GitHub Actionsで既にビルド済み
+          action: "upload"            # 明示的にアップロードモード指定
