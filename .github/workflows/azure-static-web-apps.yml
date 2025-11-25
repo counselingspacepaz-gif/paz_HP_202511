@@ -28,17 +28,15 @@ jobs:
         run: |
           set -euo pipefail
           
+          # Gemfileが存在しない場合のみ生成するガード
           if [ ! -f Gemfile ]; then
             echo "ℹ️ Gemfile not found. Generating a minimal one..."
-            bundle init
-            # 💡 ここからの行はYAMLのインデント構造から解放されるが、
-            #    シェルスクリプトのルール（GEMFILEの行頭配置）を守る必要がある。
-            cat > Gemfile <<'GEMFILE'
-source 'https://rubygems.org'
-gem 'jekyll', '~> 4.3'
-gem 'jekyll-seo-tag', '~> 2.8'
-gem 'jekyll-feed', '~> 0.17'
-GEMFILE
+            
+            # 💡 致命的な here-document や複雑なリダイレクトを避け、シンプルな echo を使う
+            echo "source 'https://rubygems.org'" > Gemfile
+            echo "gem 'jekyll', '~> 4.3'" >> Gemfile
+            echo "gem 'jekyll-seo-tag', '~> 2.8'" >> Gemfile
+            echo "gem 'jekyll-feed', '~> 0.17'" >> Gemfile
           else
             echo "✅ Using existing Gemfile."
           fi
@@ -62,4 +60,3 @@ GEMFILE
           
           app_location: "."
           output_location: "_site"
-          
