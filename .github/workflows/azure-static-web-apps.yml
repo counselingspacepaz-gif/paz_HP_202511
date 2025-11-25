@@ -47,6 +47,8 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           
+          action: "upload"
+          
           # SWAの設定（修正6: output_locationの確認はテンプレート設定次第）
           app_location: "." 
           output_location: "_site" 
