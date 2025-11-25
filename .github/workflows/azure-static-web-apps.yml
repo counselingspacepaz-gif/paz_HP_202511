@@ -1,19 +1,16 @@
 name: Build & Deploy Jekyll to Azure Static Web Apps
 
 on:
-  # **修正点**: on: push: branches: - main の二重定義を削除し、一つにまとめる
   push:
     branches:
       - main
-  workflow_dispatch: # 手動実行を可能にする
+  workflow_dispatch:
 
-# **推奨**: 連続プッシュ衝突対策（concurrency）を追加し、安全性を向上
 concurrency:
   group: swa-deploy-main
   cancel-in-progress: true
 
 jobs:
-  # **修正点**: build_and_deploy ジョブの二重定義を削除し、この一つに統合
   build_and_deploy:
     runs-on: ubuntu-latest
 
@@ -25,27 +22,24 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          # **修正点**: gem install bundler は不要なため、この設定に依存する
           bundler-cache: true
 
-      - name: Install Jekyll & Plugins
+      - name: Install Dependencies
         run: |
-          # **修正点**: set -euo pipefail を追加し、早期失敗を有効化
+          # 失敗を早期化し、パイプラインエラーを捕捉
           set -euo pipefail
           
-          # **修正点**: gem install bundler を削除
-          
-          # **修正点**: Gemfileが存在しない場合のみ生成するガードを追加
+          # Gemfileが存在しない場合のみ生成するガード
           if [ ! -f Gemfile ]; then
             echo "ℹ️ Gemfile not found. Generating a minimal one..."
             bundle init
-            # 最低限のGemfileを生成（jekyll / jekyll-seo-tag / jekyll-feed）
+            # 💡 here-documentの内容はインデントを付けずに記述する
             cat > Gemfile <<'GEMFILE'
-            source 'https://rubygems.org'
-            gem 'jekyll', '~> 4.3'
-            gem 'jekyll-seo-tag', '~> 2.8'
-            gem 'jekyll-feed', '~> 0.17'
-            GEMFILE
+source 'https://rubygems.org'
+gem 'jekyll', '~> 4.3'
+gem 'jekyll-seo-tag', '~> 2.8'
+gem 'jekyll-feed', '~> 0.17'
+GEMFILE
           else
             echo "✅ Using existing Gemfile."
           fi
@@ -57,7 +51,6 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      # **推奨**: 成果物の可観測性を維持
       - name: Debug artifact (optional)
         run: ls -la _site
 
@@ -68,9 +61,6 @@ jobs:
           action: upload
           skip_app_build: true
           
-          # **修正点**: SWAの場所指定を正解の形に一本化
-          # 画像404を解消する正しいパス設定
+          # ✅ 修正済みの正しいパス設定
           app_location: "."
           output_location: "_site"
-          
-          # **修正点**: production_branch: main は upload モードでは不要なため削除
