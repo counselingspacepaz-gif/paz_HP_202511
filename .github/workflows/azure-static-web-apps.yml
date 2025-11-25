@@ -1,56 +1,54 @@
-# .github/workflows/azure-static-web-apps.yml
-
-name: Azure Static Web Apps - Jekyll Site Deployment
+name: Build and Deploy Jekyll to Azure Static Web Apps
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: read # 修正1: secretの読み取りとコードチェックアウトに十分
+    branches: [ main ]
+    paths:
+      - '_config.yml'
+      - 'assets/**'
+      - 'images/**'
+      - 'content/**'
+      - '**/*.html'
+      - '**/*.css'
+      - '**/*.md'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-      # 1. リポジトリのチェックアウト
-      - name: 🚀 Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          # 修正2: サブモジュール使用の有無が不明なため、テーマがサブモジュールでないなら false を推奨
-          submodules: false 
+    permissions:
+      id-token: write
+      contents: read
 
-      # 2. Ruby環境セットアップ
-      - name: 💎 Set up Ruby
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          # 修正3: 安定性を重視し、Rubyバージョンを 3.2 に固定（実務でのトラブル回避）
           ruby-version: '3.2'
           bundler-cache: true
 
-      # 3. 依存関係インストールとビルド
-      - name: 📦 Install Dependencies and Build Jekyll Site
+      - name: Install Jekyll and dependencies
         run: |
           bundle install
-          
-          # 修正4: デバッグ容易性のために --trace を追加
-          # 致命的なエラーの際に詳細なコールスタックを出力
-          bundle exec jekyll build --trace
 
-      # 4. SWAへのデプロイ
-      - name: 🌐 Build and Deploy to Azure Static Web Apps
-        # 修正5: v1アクションの使用を推奨
+      - name: Build Jekyll site
+        run: |
+          bundle exec jekyll build
+
+      - name: Deploy to Azure Static Web Apps
         uses: azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          
+
+          # これが今回のエラー原因の「必須パラメータ」
           action: "upload"
-          
-          # SWAの設定（修正6: output_locationの確認はテンプレート設定次第）
-          app_location: "." 
-          output_location: "_site" 
+
+          # Jekyll の場合は app_location="."、output_location="_site"
+          app_location: "."
+          output_location: "_site"
+
+          # Azure Functions を使わない場合は空欄と skip_api_build=true
           api_location: ""
           skip_api_build: true
