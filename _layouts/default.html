@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Jekyll SEO Tag -->
+    {% seo %}
+
+    <!-- CSSの読み込み (固定バージョンでキャッシュ破壊) -->
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/styles.css' | relative_url }}?v=20251126-1"
+    >
+
+    <!-- ファビコンの読み込み -->
+    <link
+      rel="icon"
+      href="{{ '/images/logo/favicon.ico' | relative_url }}"
+      type="image/x-icon"
+    >
+      
+  </head>
+
+  <body>
+    <!-- アクセシビリティ：スキップリンク -->
+    <a class="skip-link" href="#main-content">メインコンテンツへスキップ</a>
+
+    <!-- ヘッダー（_includes/header.html に反映） -->
+    {% include header.html %}
+
+    <main id="main-content" role="main">
+      {{ content }}
+    </main>
+
+    <!-- フッター（_includes/footer.html に反映） -->
+    {% include footer.html %}
+
+    <!-- JSの読み込み (固定バージョンでキャッシュ破壊、defer) -->
+    <script 
+      src="{{ '/assets/js/main.js' | relative_url }}?v=20251126-1"
+      defer
+    ></script>
+  </body>
+</html>
