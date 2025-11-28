@@ -14,9 +14,9 @@ og_image: /images/hero/sprout-in-hand.jpg
 <!-- ▼ ヒーローセクション -->
 {% assign hero_bg = page.hero_bg | default: '/images/hero/default.jpg' %}
 <section
-  class="hero section section--hero {{ page.hero_class | default: '' }}"
+  class="hero section section--hero {{ page.hero_class }}"
   style="background-image: url('{{ hero_bg | relative_url }}');"
-  aria-label="ホームページのヒーローセクション"
+  aria-label="ホーページのヒーローセクション"
 >
   <div class="hero__overlay"></div>
   <div class="wrapper">
@@ -26,14 +26,9 @@ og_image: /images/hero/sprout-in-hand.jpg
         <p>{{ page.hero_subtitle }}</p>
 
         {% if page.hero_cta_url %}
-          {% assign is_external = false %}
-          {% if page.hero_cta_url contains 'http' %}
-            {% unless page.hero_cta_url contains site.url %}
-              {% assign is_external = true %}
-            {% endunless %}
-          {% endif %}
+          {% assign is_external = page.hero_cta_url contains 'http' and page.hero_cta_url contains site.url == false %}
           <a href="{{ page.hero_cta_url }}" class="btn"
-            {% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+             {% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
             {{ page.hero_cta }}
           </a>
         {% endif %}
