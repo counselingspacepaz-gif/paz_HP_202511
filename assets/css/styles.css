@@ -1,56 +1,56 @@
 /* =========================================================
-   Counseling Space paz - Site Styles (Fixed / 2025-11-28)
-   Theme: Sage Green / Lavender
-   Policy: A11y, Responsive, Performance Optimized
+   Counseling Space paz - Site Styles (Fixed / 2025-11-28)
+   Theme: Sage Green / Lavender
+   Policy: A11y, Responsive, Performance Optimized
 ========================================================= */
 
 /* ---------------------------
-   1. 変数定義
+   1. 変数定義
 --------------------------- */
 :root {
-  /* Colors */
-  --color-bg: #ffffff;
-  --color-sage: #3A5A40;
-  --color-text-dark: #1C3832;
-  --color-text-muted: #5f7862;
-  --color-lavender: #6E5AA3;
-  --color-lavender-light: #B9A6D3;
-  --color-lavender-soft: #EFEAF7;
-  --color-border: #cfd8cf;
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-sage: #3A5A40;
+  --color-text-dark: #1C3832;
+  --color-text-muted: #5f7862;
+  --color-lavender: #6E5AA3;
+  --color-lavender-light: #B9A6D3;
+  --color-lavender-soft: #EFEAF7;
+  --color-border: #cfd8cf;
 
-  /* Typography */
-  --font-base: 'Zen Maru Gothic', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --line-height-body: 1.8;
-  --line-height-heading: 1.35;
+  /* Typography */
+  --font-base: 'Zen Maru Gothic', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --line-height-body: 1.8;
+  --line-height-heading: 1.35;
 
-  /* Layout */
-  --max-width: 1200px;
-  --space-sm: 1.5rem;
-  --space-md: 2rem;
-  --space-lg: 4rem;
-  --radius: 6px;
-  --header-height: clamp(60px, 8vh, 70px);
+  /* Layout */
+  --max-width: 1200px;
+  --space-sm: 1.5rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --radius: 6px;
+  --header-height: clamp(60px, 8vh, 70px);
 
-  /* Focus / A11y */
-  --focus-ring: 3px solid var(--color-lavender);
-  --focus-offset: 4px;
+  /* Focus / A11y */
+  --focus-ring: 3px solid var(--color-lavender);
+  --focus-offset: 4px;
 
-  /* Hero overlay fallback */
-  --hero-overlay: rgba(163,177,138,0.35);
+  /* Hero overlay fallback */
+  --hero-overlay: rgba(163,177,138,0.35);
 }
 
 /* ---------------------------
-   2. Reset & Base
+   2. Reset & Base
 --------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  margin: 0;
-  font-family: var(--font-base);
-  font-size: clamp(16px, 1.1vw, 18px);
-  line-height: var(--line-height-body);
-  color: var(--color-sage);
-  background: var(--color-bg);
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: var(--line-height-body);
+  color: var(--color-sage);
+  background: var(--color-bg);
 }
 h1, h2, h3 { font-weight: 700; line-height: var(--line-height-heading); }
 h4 { font-size: 1.1rem; }
@@ -60,201 +60,217 @@ p { margin-block: 1em; }
 img { display: block; max-width: 100%; height: auto; }
 
 /* ---------------------------
-   3. A11y
+   3. A11y
 --------------------------- */
 :focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-offset);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition: none !important; animation: none !important; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
 /* ---------------------------
-   4. Links & Buttons
+   4. Links & Buttons
 --------------------------- */
 a { color: var(--color-sage); text-decoration: none; transition: color 0.2s ease; }
 a:hover { color: var(--color-lavender); }
 
 a[target="_blank"]::after {
-  content: '';
-  display: inline-block;
-  width: 16px; height: 16px;
-  margin-left: 4px;
-  vertical-align: middle;
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M15 4h6m0 0v6m0-6L10 14'/%3E%3C/svg%3E");
-  mask-size: contain; mask-repeat: no-repeat;
-  background-color: var(--color-sage);
-  transition: background-color 0.2s ease;
+  content: '';
+  display: inline-block;
+  width: 16px; height: 16px;
+  margin-left: 4px;
+  vertical-align: middle;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M15 4h6m0 0v6m0-6L10 14'/%3E%3C/svg%3E");
+  mask-size: contain; mask-repeat: no-repeat;
+  background-color: var(--color-sage);
+  transition: background-color 0.2s ease;
 }
 a[target="_blank"]:hover::after { background-color: var(--color-lavender); }
 
 /* Button */
 .btn {
-  display: inline-block;
-  padding: clamp(10px,1.2vw,14px) clamp(20px,2.5vw,28px);
-  border-radius: var(--radius);
-  font-weight: 700;
-  text-align: center;
-  cursor: pointer;
-  line-height: 1;
-  min-width:44px;
-  min-height:44px;
-  border:none;
-  transition: background-color 0.3s ease,color 0.3s ease;
-  background-color: var(--color-lavender);
-  color: #fff;
+  display: inline-block;
+  padding: clamp(10px,1.2vw,14px) clamp(20px,2.5vw,28px);
+  border-radius: var(--radius);
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  line-height: 1;
+  min-width:44px;
+  min-height:44px;
+  border:none;
+  transition: background-color 0.3s ease,color 0.3s ease;
+  background-color: var(--color-lavender);
+  color: #fff;
 }
 .btn:hover { background-color: #9b7aa5; }
 .btn:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 
 /* ---------------------------
-   5. Containers & Wrapper
+   5. Containers & Wrapper
 --------------------------- */
 .container,
 .wrapper {
-  width:100%;
-  max-width:var(--max-width);
-  margin-inline:auto;
-  padding-inline:clamp(1rem,3.5vw,1.5rem);
+  width:100%;
+  max-width:var(--max-width);
+  margin-inline:auto;
+  padding-inline:clamp(1rem,3.5vw,1.5rem);
 }
 
 .section { padding-block: clamp(3rem, 7vw, var(--space-lg)); }
 
 /* ---------------------------
-� �6. Header & Navigation (修正後)
+   6. Header & Navigation (修正後)
 --------------------------- */
 .site-header {
-� position: relative;
-� z-index:1000;
-� background: var(--color-bg);
-� border-bottom:1px solid var(--color-border);
-� height: var(--header-height);
+  position: relative;
+  z-index:1000;
+  background: var(--color-bg);
+  border-bottom:1px solid var(--color-border);
+  height: var(--header-height);
 }
 .site-header .header-inner { /* ★ 修正点: > .inner から .header-inner に変更 */
-� display: flex;
-� align-items: center;
-� justify-content: space-between;
-� height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
 }
 .site-nav {
-  position: absolute;
-  top: var(--header-height);
-  right:0;
-  width:100%;
-  background: var(--color-lavender-soft);
-  border-top:1px solid var(--color-border);
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-  z-index:999;
-  visibility:hidden; opacity:0; pointer-events:none;
-  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
-  transform: translateY(-10px); will-change: transform;
+  position: absolute;
+  top: var(--header-height);
+  right:0;
+  width:100%;
+  background: var(--color-lavender-soft);
+  border-top:1px solid var(--color-border);
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+  z-index:999;
+  visibility:hidden; opacity:0; pointer-events:none;
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  transform: translateY(-10px); will-change: transform;
 }
 .site-nav.is-open { visibility: visible; opacity:1; pointer-events:auto; transform:translateY(0); }
 .site-nav ul { display:flex; flex-direction:column; align-items:center; list-style:none; margin:0; padding:var(--space-sm) 0; gap:8px; }
 .menu-toggle { display:flex; align-items:center; justify-content:center; background:none; border:none;
-  font-size:clamp(1.6rem,5vw,1.8rem); color: var(--color-lavender); cursor:pointer; min-width:44px; min-height:44px;
-  transform:rotate(0deg); transition: transform 0.25s ease, opacity 0.2s; }
+  font-size:clamp(1.6rem,5vw,1.8rem); color: var(--color-lavender); cursor:pointer; min-width:44px; min-height:44px;
+  transform:rotate(0deg); transition: transform 0.25s ease, opacity 0.2s; }
 .menu-toggle:hover { opacity:0.8; }
 .menu-toggle[aria-expanded="true"] { color: var(--color-text-dark); transform: rotate(90deg); }
 
 @media (min-width:768px){
-  .menu-toggle{ display:none; }
-  .site-nav{ position:static; visibility:visible; opacity:1; pointer-events:auto; transform:none; box-shadow:none; border-top:none; background:transparent; }
-  .site-nav ul{ flex-direction:row; justify-content:flex-end; padding:0; gap:clamp(1rem,2vw,1.5rem); }
+  .menu-toggle{ display:none; }
+  .site-nav{ position:static; visibility:visible; opacity:1; pointer-events:auto; transform:none; box-shadow:none; border-top:none; background:transparent; }
+  .site-nav ul{ flex-direction:row; justify-content:flex-end; padding:0; gap:clamp(1rem,2vw,1.5rem); }
 }
 
 /* ---------------------------
-   7. Hero Section
+   7. Hero Section
 --------------------------- */
 .section--hero {
-  position: relative;
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow:hidden;
-  padding-top: env(safe-area-inset-top);
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow:hidden;
+  padding-top: env(safe-area-inset-top);
+  background-size: cover;
+  background-position: center;
 }
 .hero__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-color: var(--hero-overlay);
+  display: none; /* ← 既存の全体オーバーレイは引き続き非表示 */
 }
 .section--hero .inner {
-  position: relative;
-  z-index: 2;
-  padding-block: clamp(2rem, 6vw, 4rem);
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(2rem, 6vw, 4rem); 
+}
+@media (max-width: 767px) {
+  .section--hero .inner {
+    max-width: 90%; /* ← 767px以下でのみ幅を制限 */
+  }
+}
+.hero-text {
+  display: inline-block;
+  text-align: center;
+  background-color: rgba(163,177,138,0.45); /* 0.35 → 0.45 に強化 */
+  padding: var(--space-sm); 
+  border-radius: var(--radius); 
+}
+.hero-text .btn {
+  display: block; 
+  margin-top: var(--space-sm); 
+  margin-inline: auto; 
+  width: fit-content; 
+  max-width: 100%; /* 親要素(hero-text)からはみ出さないように保険 */
 }
 .hero-text h1 {
-  font-size: clamp(24px, 5vw, 40px);
-  line-height:1.3;
-  text-align:center;
-  color:#fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  font-size: clamp(24px, 5vw, 40px);
+  line-height:1.3;
+  color:#fff;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6); 
 }
 .hero-text p {
-  font-size: clamp(1rem,1.1rem+0.5vw,1.3rem);
-  color: var(--color-text-dark);
-  text-shadow: 0 0 1px #fff, 0 0 4px #fff, 0 0 2px var(--color-text-dark);
-  display:inline;
-  padding:0;
+  font-size: clamp(1rem,1.1rem+0.5vw,1.3rem);
+  color: #fff; 
+  text-shadow: 0 0 3px rgba(0,0,0,0.7), 0 0 1px rgba(0,0,0,0.5); 
+  display: block; 
+  padding:0;
+  margin-block-end: 0;
 }
 
 /* ---------------------------
-   8. Grid / Tiles / Cards
+   8. Grid / Tiles / Cards
 --------------------------- */
 .tiles {
-  display: grid;
-  gap: var(--space-sm);
-  grid-auto-flow: row;
-  grid-auto-rows: minmax(0, 1fr);
-  grid-template-columns: repeat(1, 1fr);
-  align-items: stretch;
+  display: grid;
+  gap: var(--space-sm);
+  grid-auto-flow: row;
+  grid-auto-rows: minmax(0, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  align-items: stretch;
 }
 .tiles > * { grid-column: auto; grid-row: auto; margin:0; }
 .tile a { display: block; }
 .tile img {
-  display:block;
-  width:100%;
-  height:auto;
-  object-fit:cover;
-  aspect-ratio:16/9;
-  transition: transform 0.3s ease;
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  aspect-ratio:16/9;
+  transition: transform 0.3s ease;
 }
 @media (hover: hover){
-  .tile img:hover { transform: scale(1.02); }
+  .tile img:hover { transform: scale(1.02); }
 }
 .tile h3 { padding:1rem; font-size:clamp(16px,1.5vw,18px); line-height:1.5; margin:0; }
 .tile p { padding-inline:1rem; margin:0 0 1rem 0; color: var(--color-text-dark); }
 .tile {
-  background:#fff;
-  border:1px solid var(--color-border);
-  border-radius: var(--radius);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  background:#fff;
+  border:1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
 }
 .tile:hover,
 .tile:focus-within {
-  border-color: var(--color-lavender);
-  box-shadow:0 4px 8px rgba(0,0,0,0.1);
-  background-color: var(--color-lavender-soft);
-  transform: translateY(-2px);
+  border-color: var(--color-lavender);
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+  background-color: var(--color-lavender-soft);
+  transform: translateY(-2px);
 }
 .tile a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
 
 /* Compliant / special card */
 .tile--compliance {
-  background: var(--color-lavender-soft);
-  border-color: var(--color-lavender);
+  background: var(--color-lavender-soft);
+  border-color: var(--color-lavender);
 }
 .tile--compliance:hover,
 .tile--compliance:focus-within {
-  box-shadow:0 4px 8px rgba(0,0,0,0.1);
-  border-color: var(--color-lavender);
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+  border-color: var(--color-lavender);
 }
 
 /* Responsive Grid */
@@ -262,21 +278,31 @@ a[target="_blank"]:hover::after { background-color: var(--color-lavender); }
 @media (min-width:1024px){ .tiles{grid-template-columns:repeat(3,1fr);} }
 
 /* ---------------------------
-   9. Footer
+   9. Footer (中央揃え修正版)
 --------------------------- */
 .site-footer {
-  border-top:1px solid var(--color-border);
-  background: var(--color-lavender-soft);
-  padding-block: clamp(1.5rem,3vw,2.5rem);
-  color: var(--color-sage);
+  border-top:1px solid var(--color-border);
+  background: var(--color-lavender-soft);
+  padding-block: clamp(1.5rem,3vw,2.5rem);
+  color: var(--color-sage);
 }
 .footer-inner {
-  display:grid;
+  display: flex; /* Flexに変更 */
+  flex-direction: column; /* 縦に並べる */
+  align-items: center; /* 中央揃え */
   gap: var(--space-sm);
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  text-align: center; /* テキストも中央揃え */
 }
+
+/* 連絡先、プライバシーリンク、コピーライトを中央に集約 */
+.footer-contact-address { margin-bottom: 1.5rem; } /* 連絡先の下余白を調整 */
 .footer-contact-address h2 { font-size:1.25rem; color:var(--color-lavender); margin:0 0 0.5rem; }
-.footer-privacy { text-align:center; margin-top:1.5rem; }
+
+/* プライバシーポリシーリンクの調整 */
+.footer-privacy { 
+  text-align:center; 
+  margin-top:0; /* 不要な余白を削除 */
+}
 .footer-privacy a {
   background: var(--color-lavender);
   color:#fff;
@@ -289,124 +315,46 @@ a[target="_blank"]:hover::after { background-color: var(--color-lavender); }
   transition:background-color 0.2s ease, box-shadow 0.2s ease;
 }
 .footer-privacy a:hover { background: var(--color-text-dark); }
-.copyright { font-size:0.75rem; color:var(--color-text-muted); text-align:center; margin-top:0.8rem; }
+
+/* コピーライトは既に中央揃え */
+.copyright { 
+  font-size:0.75rem; 
+  color:var(--color-text-muted); 
+  text-align:center; 
+  margin-top:0.8rem; /* プライバシーリンクとの間にスペースを設ける */
+}
 
 /* ---------------------------
-   7. Hero Section (微調整・強化版)
+   スキップリンクのスタイル (A11y対応)
 --------------------------- */
-.section--hero {
-  /* 既存のスタイルを維持 */
-  position: relative;
-  min-height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow:hidden;
-  padding-top: env(safe-area-inset-top);
-  background-size: cover;
-  background-position: center;
-}
-
-.hero__overlay {
-  display: none; /* ← 既存の全体オーバーレイは引き続き非表示 */
-}
-
-/* .section--hero .inner の修正 */
-.section--hero .inner {
-  position: relative;
-  z-index: 2;
-  padding-block: clamp(2rem, 6vw, 4rem); 
-  
-  /* PCでは広い幅(var(--max-width))を維持するため、max-width:90%はモバイルのみに限定 */
-  /* た�し、中央揃えのために親要�の .section--hero に text-align: center; が既にあるため、ここでは追�の text-align は不要 */
-}
-
-/* �️ 微調整 1: モバイルでの幅制限 */
-@media (max-width: 767px) {
-  .section--hero .inner {
-    max-width: 90%; /* ← 767px以下でのみ幅を制限 */
-  }
-}
-
-/* 1. テキストブロック専用の半透明背景・パディング・角丸を追� */
-.hero-text {
-  display: inline-block;
-  text-align: center;
-  
-  /* �️ 微調整 2: 背景色の濃度を強化 */
-  /* var(--hero-overlay)は0.35�が、視認性強化のため0.45に固定値を一時的に使用 */
-  /* もしくは :root に --hero-text-bg: rgba(163,177,138,0.45); を定義し、それを使用するのがベスト */
-  background-color: rgba(163,177,138,0.45); /* 0.35 → 0.45 に強化 */
-  
-  padding: var(--space-sm); 
-  border-radius: var(--radius); 
-}
-
-
-/* 3. ボタンの位置を下げる（.hero-text内の.btnに対して） */
-.hero-text .btn {
-  display: block; 
-  margin-top: var(--space-sm); 
-  margin-inline: auto; 
-  
-  /* �️ 微調整 3: width: fit-content の互換性を考慮した代替 */
-  /* width: fit-content; を優先しつつ、互換性のため max-width を追�し、更に必要に応じてインラインブロックの代替手段を講じる */
-  width: fit-content; 
-  max-width: 100%; /* 親要�(hero-text)からはみ出さないように保険 */
-  
-  /* 互換性を重視するなら、以下のようにしても良い */
-  /*
-  display: inline-block; 
-  margin-top: var(--space-sm); 
-  */
-}
-
-
-/* メインコピー、サブコピーのスタイルは変更なし */
-.hero-text h1 {
-  font-size: clamp(24px, 5vw, 40px);
-  line-height:1.3;
-  color:#fff;
-  text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6); 
-}
-.hero-text p {
-  font-size: clamp(1rem,1.1rem+0.5vw,1.3rem);
-  color: #fff; 
-  text-shadow: 0 0 3px rgba(0,0,0,0.7), 0 0 1px rgba(0,0,0,0.5); 
-  display: block; 
-  padding:0;
-  margin-block-end: 0;
-}
-/* スキップリンクの非表示設定 (A11y対応) */
 .skip-link {
-  position: absolute; /* 画面外に配置 */
-  top: auto;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  z-index: 9999;
-  /* フォーカス時の見�えを整える */
-  background-color: var(--color-lavender); 
-  color: #fff; 
-  padding: 8px 12px; 
-  text-decoration: none;
+  position: absolute; /* 画面外に配置 */
+  top: auto;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+  /* フォーカス時の見栄えを整える */
+  background-color: var(--color-lavender); 
+  color: #fff; 
+  padding: 8px 12px; 
+  text-decoration: none;
 }
 
 /* フォーカスされたら表示させる */
 .skip-link:focus {
-  position: static; /* 通常の配置に戻す */
-  left: auto;
-  width: auto;
-  height: auto;
-  overflow: visible;
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-offset);
+  position: static; /* 通常の配置に戻す */
+  left: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 /* 9. Footer */
-/* フッター内の要�が幅を取りすぎないようにする（フッター内の img や div に必要なら適用） */
+/* フッター内の要素が幅を取りすぎないようにする（フッター内の img や div に必要なら適用） */
 .site-footer img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%;
+    height: auto;
 }
