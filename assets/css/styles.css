@@ -1,5 +1,5 @@
 /* =========================================================
-   Counseling Space paz - Site Styles (修正版 2025-11-28)
+   Counseling Space paz - Site Styles (Full 2025-11-28)
    Theme: Sage Green / Lavender
    Policy: A11y, Responsive, Performance Optimized
 ========================================================= */
@@ -17,7 +17,7 @@
   --color-lavender-light: #B9A6D3;
   --color-lavender-soft: #EFEAF7;
   --color-border: #cfd8cf;
-  --color-bg-hover: #EFEAF7;
+  --color-bg-hover: #f3edf7;
 
   /* Typography */
   --font-base: 'Zen Maru Gothic', 'Noto Sans JP', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -84,47 +84,22 @@ a[target="_blank"]::after {
 }
 a[target="_blank"]:hover::after { background-color: var(--color-lavender); }
 
-/* Button 共通 */
-.btn {
-  display: inline-block;
-  padding: clamp(10px,1.2vw,14px) clamp(20px,2.5vw,28px);
-  border-radius: var(--radius);
-  font-weight: 700;
-  text-align: center;
-  cursor: pointer;
-  line-height: 1;
-  min-width: 44px;
-  min-height: 44px;
-  border: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* Button */
+.btn { 
+  display: inline-block; padding: clamp(10px,1.2vw,14px) clamp(20px,2.5vw,28px);
+  border-radius: var(--radius); font-weight: 700; text-align: center; cursor: pointer;
+  line-height: 1; min-width:44px; min-height:44px; border:none;
+  transition: background-color 0.3s ease,color 0.3s ease; 
 }
-
-/* ヒーロー用ボタン */
-.section--hero .btn {
-  background-color: var(--color-lavender);
-  color: #fff;
-}
-.section--hero .btn:hover {
-  background-color: #9b7aa5;
-}
-.section--hero .btn:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-offset);
-}
-
-/* 既存互換用 .btn--primary */
 .btn--primary {
-  background-color: var(--color-lavender);
-  color: #fff;
+  background-color: var(--color-lavender); color:#fff;
 }
 .btn--primary:hover {
-  background-color: #9b7aa5; /* 修正版：濃ラベンダー */
+  background-color: #9b7aa5; /* 濃ラベンダーに統一 */
 }
 .btn--primary:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-offset);
-  background: var(--color-lavender-soft);
-  color: var(--color-lavender);
+  outline: var(--focus-ring); outline-offset: var(--focus-offset);
+  background: var(--color-lavender-soft); color: var(--color-lavender);
 }
 
 /* ---------------------------
@@ -167,67 +142,21 @@ a[target="_blank"]:hover::after { background-color: var(--color-lavender); }
   position: relative;
   min-height: 50vh;
   display: flex; align-items: center; justify-content: center;
-  text-align: center; overflow:hidden;
+  text-align: center;
+  overflow:hidden;
   padding-top: env(safe-area-inset-top);
-  background-size: cover;
+  background-size: cover; 
   background-position: center;
+  background-repeat: no-repeat;
 }
+
 .hero__overlay {
   position: absolute;
   inset: 0;
   background-color: rgba(163,177,138,0.35);
-  z-index: 1;
-}
-.section--hero .wrapper { position: relative; z-index: 2; }
-.hero-text h1, .hero-text p {
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  z-index:1;
 }
 
-/* ---------------------------
-   8. Grid / Tiles
---------------------------- */
-.tiles {
-  display: grid;
-  gap: var(--space-sm);
-  grid-auto-flow: row;
-  grid-auto-rows: minmax(0, 1fr);
-  grid-template-columns: repeat(1,1fr);
-  align-items: stretch;
-}
-.tiles > * { grid-column: auto; grid-row: auto; margin:0; }
-.tile img { display:block; width:100%; height:auto; object-fit:cover; aspect-ratio:16/9; }
-.tile h3 { padding:1rem; font-size:clamp(16px,1.5vw,18px); line-height:1.5; margin:0; }
-.tile a { display: block; } /* カード全体をクリック可能 */
-.tile a:focus-visible { outline: var(--focus-ring); outline-offset: var(--focus-offset); }
-.tile:hover, .tile:focus-within {
-  border-color: var(--color-lavender);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: var(--color-bg-hover);
-  transform: translateY(-2px);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-}
-.tile.tile--compliance {
-  background-color: var(--color-bg-hover);
-  border: 1px solid var(--color-lavender);
-}
-.tile.tile--compliance:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-color: #9b7aa5;
-}
-
-/* ---------------------------
-   9. Footer
---------------------------- */
-.site-footer {
-  border-top:1px solid var(--color-border);
-  background: var(--color-lavender-soft);
-  padding-block: clamp(1.5rem,3vw,2.5rem);
-  color: var(--color-sage);
-}
-.footer-inner { display:grid; gap:var(--space-sm); grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
-.footer-contact-address h2 { font-size:1.25rem; color:var(--color-lavender); margin:0 0 0.5rem; }
-.footer-privacy { text-align:center; margin-top:1.5rem; }
-.footer-privacy a { background: var(--color-lavender); color:#fff; padding:0.4rem 0.8rem; border-radius:var(--radius); font-weight:600; display:inline-flex; align-items:center; gap:4px; transition:background-color 0.2s ease, box-shadow 0.2s ease; }
-.footer-privacy a:hover { background: #9b7aa5; }
-.copyright { font-size:0.75rem; color:var(--color-text-muted); text-align:center; margin-top:0.8rem; }
+.section--hero .wrapper {
+  position: relative;
+  z-
