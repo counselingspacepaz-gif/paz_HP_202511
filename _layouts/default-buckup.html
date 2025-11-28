@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% seo %}
+
+    <!-- CSSの読み込み（キャッシュ壊付き / 閉じタグ修正済み） -->
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/styles.css' | relative_url }}?v={{ site.assets_version }}"
+    >
+
+    <!-- ファビコン -->
+    <link
+      rel="icon"
+      href="{{ '/images/logo/favicon.ico' | relative_url }}"
+      type="image/x-icon"
+    >
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">メインコンテンツへスキップ</a>
+
+    {% include header.html %}
+
+    <main id="main-content" role="main">
+      {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <!-- JSの読み込み（キャッシュ壊＋defer / CSS二重削除済み） -->
+    <script
+      src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.assets_version }}"
+      defer
+    ></script>
+  </body>
+</html>
