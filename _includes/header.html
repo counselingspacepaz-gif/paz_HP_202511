@@ -1,46 +1,47 @@
 {% comment %}
-  サイト全体に共通のヘッダー要素。
-  JSが依存するID: #menu-toggle (トグルボタン), #main-menu (ナビゲーション)
+  サイト全体に共通のヘッダー要素。
+  JSが依存するID: #menu-toggle (トグルボタン), #main-menu (ナビゲーション)
 {% endcomment %}
-<header class="site-header">
-  <div class="wrapper header-inner">
+<header class="site-header" role="banner">   <div class="wrapper header-inner">
 
-    {% comment %} ロゴ: トップページへのリンク {% endcomment %}
-    <div class="site-logo">
-      <a href="{{ '/' | relative_url }}" title="{{ site.title }}のトップページへ">
-        <img src="{{ 'images/logo/paz-logo.png' | relative_url }}" 
-             alt="{{ site.title }}ロゴ" width="200" height="56">
-      </a>
-    </div>
+    {% comment %} ロゴ: トップページへのリンク {% endcomment %}
+    <div class="site-logo">
+      <a href="{{ '/' | relative_url }}" title="{{ site.title }}のトップページへ">
+                <img src="{{ 'images/logo/paz-logo.png' | relative_url }}" 
+             alt="{{ site.title }}ロゴ" height="56"> 
+      </a>
+    </div>
 
-    {% comment %} モバイル用ナビゲーション切り替えボタン {% endcomment %}
-    <button class="menu-toggle" id="menu-toggle" aria-label="メニューを開閉">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
-           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
-           stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true" role="img">
-        <line x1="4" y1="6" x2="20" y2="6"></line>
-        <line x1="4" y1="12" x2="20" y2="12"></line>
-        <line x1="4" y1="18" x2="20" y2="18"></line>
-      </svg>
-    </button>
+    {% comment %} モバイル用ナビゲーション切り替えボタン {% endcomment %}
+    <button class="menu-toggle" id="menu-toggle" aria-label="メニューを開閉"
+            aria-controls="main-menu" aria-expanded="false">       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" 
+           fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+           stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true">         <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+    </button>
 
-    {% comment %} ナビゲーションメニュー: ID #main-menu を持つ {% endcomment %}
-    <nav class="site-nav" id="main-menu" aria-label="メインナビゲーション">
-      <ul>
-        <li>
-          <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>HOME</a>
-        </li>
-        <li>
-          <a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}aria-current="page"{% endif %}>pazについて</a>
-        </li>
-        <li>
-          <a href="{{ '/booking/' | relative_url }}" {% if page.url == '/booking/' %}aria-current="page"{% endif %}>ご予約</a>
-        </li>
-        <li>
-          <a href="{{ '/counselor/' | relative_url }}" {% if page.url == '/counselor/' %}aria-current="page"{% endif %}>カウンセラー</a>
-        </li>
-      </ul>
-    </nav>
+    {% comment %} ナビゲーションメニュー: ID #main-menu を持つ {% endcomment %}
+    <nav class="site-nav" id="main-menu" aria-label="メインナビゲーション">
+      <ul>
+        <li>
+          <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>HOME</a>
+        </li>
+        <li>
+          <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about' %}aria-current="page"{% endif %}>pazについて</a>
+        </li>
+        <li>
+          <a href="{{ '/booking/' | relative_url }}" {% if page.url contains '/booking' %}aria-current="page"{% endif %}>ご予約</a>
+        </li>
+        <li>
+          <a href="{{ '/counselor/' | relative_url }}" {% if page.url contains '/counselor' %}aria-current="page"{% endif %}>カウンセラー</a>
+        </li>
+                <li>
+          <a href="http://www.sugimen.com/" target="_blank" rel="noopener noreferrer">連携機関</a>
+        </li>
+      </ul>
+    </nav>
 
-  </div>
+  </div>
 </header>
