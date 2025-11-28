@@ -2,15 +2,41 @@
 layout: default
 title: Counseling Space paz
 description: 女性と子どものための相談機関です
-# ヒーロー設定は変更なし
 hero_class: home
 hero_title: 女性と子どものための相談機関です
 hero_subtitle: pazとは平和・安らぎという意味です
 hero_cta: ご予約はこちら
 hero_cta_url: https://outlook.office.com/book/paz1@counselingspacepaz.com/
-# OGP画像は変更なし
+hero_bg: /images/hero/sprout-in-hand.jpg
 og_image: /images/hero/sprout-in-hand.jpg
 ---
+
+<!-- ▼ ヒーローセクション -->
+<section
+  class="hero section section--hero {{ page.hero_class }}"
+  data-hero-bg="{{ page.hero_bg | relative_url }}"
+>
+  <div class="wrapper">
+    <div class="inner">
+      <div class="hero-text">
+        <h1>{{ page.hero_title }}</h1>
+        <p>{{ page.hero_subtitle }}</p>
+
+        {% if page.hero_cta_url %}
+          <a
+            href="{{ page.hero_cta_url }}"
+            class="btn"
+            rel="noopener"
+          >
+            {{ page.hero_cta }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ▲ ヒーローセクション -->
+
 
 <section class="spotlight section section--philosophy">
   <div class="wrapper">
@@ -24,37 +50,38 @@ og_image: /images/hero/sprout-in-hand.jpg
     </div>
   </div>
 </section>
+
 <section class="section section--features">
   <div class="wrapper">
     <div class="inner tiles">
 
       <article class="tile">
-        <a href="/about/">
-          <img src="/images/sections/counseling-room.jpg" alt="カウンセリングルームの様子" loading="lazy">
+        <a href="{{ '/about/' | relative_url }}">
+          <img src="{{ '/images/sections/counseling-room.jpg' | relative_url }}" alt="カウンセリングルームの様子" loading="lazy">
           <h3>静かな個室で安心してお話しいただけます</h3>
           <p>プライベートな空間で、周囲に気兼ねなくお話しできます。</p>
         </a>
       </article>
 
       <article class="tile">
-        <a href="/counselor/">
-          <img src="/images/thumbs/booking.jpg" alt="ペンとカレンダーの画像" loading="lazy">
+        <a href="{{ '/counselor/' | relative_url }}">
+          <img src="{{ '/images/thumbs/booking.jpg' | relative_url }}" alt="ペンとカレンダーの画像" loading="lazy">
           <h3>臨床心理士・公認心理師が、経験と根拠に基づき支援</h3>
           <p>専門資格に裏付けられたエビデンスベースの支援を提供します。</p>
         </a>
       </article>
 
       <article class="tile">
-        <a href="/about/">
-          <img src="/images/banners/green-vase.jpg" alt="オンラインセッションの様子" loading="lazy">
+        <a href="{{ '/about/' | relative_url }}">
+          <img src="{{ '/images/banners/green-vase.jpg' | relative_url }}" alt="オンラインセッションの様子" loading="lazy">
           <h3>ご自宅からのオンラインカウンセリングに対応</h3>
           <p>遠方や外出が難しい方も、安心してご利用いただけます。</p>
         </a>
       </article>
 
       <article class="tile tile--privacy">
-        <a href="/content/privacy-policy-paz.pdf" target="_blank" rel="noopener noreferrer">
-          <img src="/images/sections/holding-hands-illustration.png" alt="手を繋ぐイラスト" loading="lazy">
+        <a href="{{ '/content/privacy-policy-paz.pdf' | relative_url }}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ '/images/sections/holding-hands-illustration.png' | relative_url }}" alt="手を繋ぐイラスト" loading="lazy">
           <h3>個人情報と記録を厳格に管理し、安心に配慮</h3>
           <p>プライバシーポリシーをご確認ください（PDFが開きます）。</p>
         </a>
@@ -68,7 +95,7 @@ og_image: /images/hero/sprout-in-hand.jpg
 
       <article class="tile">
         <a href="https://lin.ee/KoUph8Z" target="_blank" rel="noopener noreferrer">
-          <img src="/images/banners/line-contact.png" alt="LINEでのお問い合わせ" loading="lazy">
+          <img src="{{ '/images/banners/line-contact.png' | relative_url }}" alt="LINEでのお問い合わせ" loading="lazy">
           <h3>LINEで気軽にお問い合わせいただけます</h3>
           <p>友だち追加してメッセージをお送りください。</p>
         </a>
