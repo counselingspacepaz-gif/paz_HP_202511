@@ -8,11 +8,11 @@
     {% seo %}
 
     <!-- CSSの読み込み (固定バージョンでキャッシュ破壊) -->
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/styles.css' | relative_url }}?v=20251126-1"
-    >
+    <link 
+     rel="stylesheet"
+     href="{{ '/assets/css/styles.css' | relative_url }}?v={{ site.assets_version }}"
 
+    
     <!-- ファビコンの読み込み -->
     <link
       rel="icon"
@@ -37,9 +37,9 @@
     {% include footer.html %}
 
     <!-- JSの読み込み (固定バージョンでキャッシュ破壊、defer) -->
-    <script 
-      src="{{ '/assets/js/main.js' | relative_url }}?v=20251126-1"
-      defer
-    ></script>
+      <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}?v={{ site.assets_version }}">
+      <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.assets_version }}" 
+      defer>
+      </script>
   </body>
 </html>
